@@ -12,6 +12,6 @@ public class start_button : MonoBehaviour
        //Application.LoadLevel(scene_name);
        UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
 
-    }
+    }//Linahhhhhhh
 
 }
