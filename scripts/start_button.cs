@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class start_button : MonoBehaviour
 {
     // Start is called before the first frame update
+	
+	// nuha
+	
     public void StartApp()
     {
        //Application.LoadLevel(scene_name);
