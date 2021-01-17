@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7015eeb17f8a9ce4ba30b1164bcb04ac
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: MCS Diwani0 S_U normal.
+  fontNames:
+  - MCS Diwani0 S_U normal.
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

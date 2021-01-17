@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 2ba23391a9f1868429174785609df101
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: MCS Diwany1 S_U normal.
+  fontNames:
+  - MCS Diwany1 S_U normal.
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 733c6a13ab97eea40afcf52877d575bc, type: 3}
+  - {fileID: 12800000, guid: 15867793ec110f44d8a81f2a1e994ff4, type: 3}
+  - {fileID: 12800000, guid: d071140518eec72418bd6f76f95a429a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
