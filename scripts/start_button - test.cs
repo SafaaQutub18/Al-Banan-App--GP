@@ -12,6 +12,9 @@ public class start_button : MonoBehaviour
     {
        //Application.LoadLevel(scene_name);
 
+
+    }//Linahhhhhhh
+
        UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
 // Safaa
     }
