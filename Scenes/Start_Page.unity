@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.10991457, g: 0.6132076, b: 0.43292356, a: 0.7882353}
+    m_HighlightedColor: {r: 0.15619439, g: 0.6132076, b: 0.44896847, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.7411765}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 410294302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0438d128d9a58674eb2733de66597787, type: 3}
+  m_Script: {fileID: 11500000, guid: c2ae1a6d3ae9be146b647c709d80c4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -381,7 +381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.5999985, y: -0.0000038146973}
+  m_AnchoredPosition: {x: -3.1, y: -0.0000038146973}
   m_SizeDelta: {x: 19.134949, y: 10.0061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &746426036
