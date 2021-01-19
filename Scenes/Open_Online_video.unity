@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 125290307}
   - component: {fileID: 125290306}
   - component: {fileID: 125290305}
+  - component: {fileID: 125290308}
   m_Layer: 5
   m_Name: bt_video list
   m_TagString: Untagged
@@ -359,7 +360,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 125290306}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 125290308}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: VideoList
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &125290306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +409,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125290303}
   m_CullTransparentMesh: 0
+--- !u!114 &125290308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125290303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &129218310
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +433,7 @@ GameObject:
   - component: {fileID: 129218314}
   - component: {fileID: 129218313}
   - component: {fileID: 129218312}
+  - component: {fileID: 129218315}
   m_Layer: 5
   m_Name: bt_uploud video
   m_TagString: Untagged
@@ -479,7 +504,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129218313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 129218315}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: upload_video
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &129218313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +553,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129218310}
   m_CullTransparentMesh: 0
+--- !u!114 &129218315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129218310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &193421459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2700,6 +2748,7 @@ GameObject:
   - component: {fileID: 1927400433}
   - component: {fileID: 1927400432}
   - component: {fileID: 1927400431}
+  - component: {fileID: 1927400434}
   m_Layer: 5
   m_Name: bt_watch video
   m_TagString: Untagged
@@ -2770,7 +2819,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1927400432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1927400434}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open_Online_video
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1927400432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2808,6 +2868,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927400429}
   m_CullTransparentMesh: 0
+--- !u!114 &1927400434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927400429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2025032625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,6 +2892,7 @@ GameObject:
   - component: {fileID: 2025032629}
   - component: {fileID: 2025032628}
   - component: {fileID: 2025032627}
+  - component: {fileID: 2025032630}
   m_Layer: 5
   m_Name: bt_log out/in
   m_TagString: Untagged
@@ -2890,7 +2963,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2025032628}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2025032630}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Sign_In
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2025032628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,6 +3012,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025032625}
   m_CullTransparentMesh: 0
+--- !u!114 &2025032630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025032625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2040672341
 GameObject:
   m_ObjectHideFlags: 0
