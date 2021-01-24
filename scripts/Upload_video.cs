@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
 public class Upload_video : MonoBehaviour
 {
@@ -14,37 +14,20 @@ public class Upload_video : MonoBehaviour
     public void UploadVideo ()
     {
        path = EditorUtility.OpenFilePanel("Show all images (.png)", "","png");  
-      // GetImage ();
-      StartCoroutine(GetTexture());
+      GetImage ();
     }
 
-    IEnumerator GetTexture () {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("file:///" + path);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        } else 
-        {
-            Texture MyTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            rawImage.texture = MyTexture;
-            
-
-        }
-    }
-
-   /* public void GetImage () {
+      public void GetImage () {
         if (path != null) {
             UpdateImage();
         }
     }
     
     public void UpdateImage () {
-        WWW www = new WWW("file:///" + path");
-        image.texture = www.texture;
+        WWW www = new WWW("file:///" + path);
+        rawImage.texture = www.texture;
 
-    } */
+    } 
 
     
 }
