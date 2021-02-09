@@ -3,8 +3,6 @@ import nltk
 from WordsClass import Words
 
 
-
-
 def wordTokenize(text):
         word_list = nltk.word_tokenize(text)
         
@@ -13,10 +11,8 @@ def wordTokenize(text):
         
         
 def classifyText(word_list):
-    
-    
+  
     classified_word_list=[]
-    
     compound_word_file = open('compound word.txt', 'r', encoding="utf8",)
     
         for line in compound_word_file :
