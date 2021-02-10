@@ -4,7 +4,7 @@
 # parameter: the tokenized_text: which contains the list of word.
 #            the morphological_result: which contains the analyzed feature that extracted from the words.
 
-def filteringCopoundWord(tokenized_text):
+def filteringCopoundWord(tokenized_text,moropholgical_result):
     # read the compound word file 
     compound_word_file = open('compound word.txt', 'r', encoding="utf8",) 
     
@@ -51,6 +51,9 @@ def filteringCopoundWord(tokenized_text):
             filtering_result.append(tokenized_text[counter])
             counter+=1
             
+    print(filtering_result)        
+        
+            
     
     
-filteringCopoundWord(['صفاء', 'السلام', 'عليكم','عشاء', 'ورحمة', 'الله', 'وبركاته', 'كيف حالك', 'نهنى', 'صباح', 'الخير', 'السلام', 'عليكم'])
+#filteringCopoundWord(['صفاء', 'السلام', 'عليكم','عشاء', 'ورحمة', 'الله', 'وبركاته', 'كيف حالك', 'نهنى', 'صباح', 'الخير', 'السلام', 'عليكم'])
