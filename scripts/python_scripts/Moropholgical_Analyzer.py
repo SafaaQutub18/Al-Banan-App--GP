@@ -26,4 +26,4 @@ def morphological(fullstring):
     
     filteringCopoundWord(tokenized_text,moropholgical_result)
         
-morphological("كلا")
+morphological(" حتي السلام عليكم ورحمة الله وبركاته حتى في الملعب مع الاصدقاء الذين ينامون طول اليوم اللتان ياكلون التفاح اللاتي يشربن الحليب اللواتي الحليب الحليب اللائي")
