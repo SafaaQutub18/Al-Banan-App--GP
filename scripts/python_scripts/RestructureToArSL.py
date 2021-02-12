@@ -51,9 +51,61 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
             filtering_result.append(tokenized_text[counter])
             counter+=1
             
-    print(filtering_result)        
+    print(filtering_result)   
+
+
+
+     
         
             
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+#def restructure(filtering_result, moropholgical_result):
+#    count=0
+ #   for word in filtering_result: 
+        if moropholgical_result[count]['pos']== 'verb':
+            if moropholgical_result[count+1]['pos']== 'noun':
+                temp= 
+            
+    
     
     
 #filteringCopoundWord(['صفاء', 'السلام', 'عليكم','عشاء', 'ورحمة', 'الله', 'وبركاته', 'كيف حالك', 'نهنى', 'صباح', 'الخير', 'السلام', 'عليكم'])
