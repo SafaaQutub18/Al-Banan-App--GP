@@ -84,13 +84,13 @@ def restructureText(filtering_result, moropholgical_result):
     
     # 
     counter=0
-    while counter < len(filtering_result): 
-        if moropholgical_result[counter]['pos']== 'verb':
+    while counter < len(filtering_result)-1: 
+        if moropholgical_result[counter]['pos']== 'verb' :
             
             if moropholgical_result[counter+1]['pos']== 'noun' or moropholgical_result[counter+1]['pos']== 'noun_prop' :
                 temp_moropholgical_result= moropholgical_result[counter]
                 temp_filtering_result= filtering_result[counter]
-                print(temp_filtering_result)
+                
                 
                 moropholgical_result[counter]= moropholgical_result[counter+1]
                 filtering_result[counter] = filtering_result[counter+1]
@@ -124,11 +124,11 @@ def restructureText(filtering_result, moropholgical_result):
         if  moropholgical_result[counter]['pos']== 'noun' or moropholgical_result[counter]['pos']== 'adj':
             if moropholgical_result[counter]['num']== 's':
                  if moropholgical_result[counter]['gen']== 'f' and lemma != word[0] and moropholgical_result[counter]['rat']=='r':
-                        final_restructuring.append(word)
+                        final_restructuring.append((lemma,0))
                         final_restructuring.append(("أنثى",0))
                         counter+=1
                  else: 
-                      final_restructuring.append(word)
+                      final_restructuring.append((lemma,0))
                       counter+=1
                       
             # ********************************************************
@@ -136,31 +136,52 @@ def restructureText(filtering_result, moropholgical_result):
                 if moropholgical_result[counter]['num']== 'd':
                       if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and moropholgical_result[counter]['rat']=='r':
                             
-                            final_restructuring.append(word)
+                            final_restructuring.append((lemma,0))
                             final_restructuring.append(("اثنان",0))
                             final_restructuring.append(("أنثى",0))
                             counter+=1
                       else: 
-                          final_restructuring.append(word)
+                          final_restructuring.append((lemma,0))
                           final_restructuring.append(("اثنان",0))
                           counter+=1
                 # ********************************************************
                 else:
                     if moropholgical_result[counter]['num']== 'p':
-                          if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and moropholgical_result[counter]['rat']=='r':
-                                
-                                final_restructuring.append(word)
-                                final_restructuring.append(("كثير",0))
-                                final_restructuring.append(("أنثى",0))
-                                counter+=1
+                          if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and moropholgical_result[counter]['rat']=='r':  
+                            final_restructuring.append((lemma,0))
+                            final_restructuring.append(("كثير",0))
+                            final_restructuring.append(("أنثى",0))
+                            counter+=1
                           else: 
-                              final_restructuring.append(word)
+                              final_restructuring.append((lemma,0))
                               final_restructuring.append(("كثير",0))
                               counter+=1
         
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    else: 
-         if moropholgical_result[counter]['pos']== 'verb':
+        else: 
+             if moropholgical_result[counter]['pos']== 'verb':
+                 if moropholgical_result[counter]['asp']== 'p':
+                     final_restructuring.append((lemma,0))
+                     final_restructuring.append(("انتهى",0))
+                     
+                 else: 
+                    if moropholgical_result[counter]['asp']== 'i':
+                        if moropholgical_result[counter]['per']== '1' and moropholgical_result[counter]['num']== 'p':
+                            final_restructuring.append(("نحن",0)) 
+                        if moropholgical_result[counter]['prc1']!= 'sa_fut':
+                            final_restructuring.append((lemma,0))
+                            final_restructuring.append(("الآن",0))
+                            
+                        else: 
+                            final_restructuring.append((lemma,0))
+                            final_restructuring.append(("قريبا",0))
+                            
+                
+             else: 
+                 final_restructuring.append((lemma,0))
+             counter+=1
+                        
+             
              
                  
         

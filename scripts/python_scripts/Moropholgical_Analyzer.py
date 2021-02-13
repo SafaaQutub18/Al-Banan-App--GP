@@ -26,4 +26,4 @@ def morphological(fullstring):
     filteringCopoundWord(tokenized_text,moropholgical_result)
     
         
-morphological("فتيان فتيات أشجار شجيرات بقرات رواد شموس معلمات لعبتين")
+morphological("الخير نرجو الله أن رحمة مساء")
