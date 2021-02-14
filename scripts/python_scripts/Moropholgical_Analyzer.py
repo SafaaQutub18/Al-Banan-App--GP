@@ -26,4 +26,5 @@ def morphological(fullstring):
     filteringCopoundWord(tokenized_text,moropholgical_result)
     
         
-morphological("الخير الله ورحمة مساء السلام عليكم ")
+morphological("تلك أولئك ذانك تانك هنالك")
+

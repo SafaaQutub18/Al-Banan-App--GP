@@ -12,12 +12,14 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
     filtering_result = [] 
     counter = 0
+    
     temp_compound_word=[]
     delete_index = []
     
     # loop through the text word by word
     while counter < len(tokenized_text):
  
+        # check if text contains asma_mosola or jarr_letters to delete it
         if tokenized_text[counter] in asma_mosola or tokenized_text[counter] in jarr_letters:
             delete_index.append(counter)
             counter+=1
@@ -31,18 +33,23 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
             
             # loop through the words of lines
             for word_in_line in line.split():
+                
+                #prevent counter from out of range exeption 
                 if(counter == (len(tokenized_text))):
-                    break
+                   break
+               
                 # check if the word in file match with the word in "tokenized_text" list
                 if word_in_line==tokenized_text[counter]:
+                    
                     #collect each word of the compound_word.
                     temp_compound_word.append(word_in_line) 
+                    
+                    # add the indexes of the word after the first word of compound word  to deleted
                     if len(temp_compound_word) > 1:
                        delete_index.append(counter)
-                    counter+=1   
+                    counter+=1 
+              
                     
-                        
-            
             # after finishing each line check if there are compound word stored 
             # in temp_compound_word, that for skip the rest of lines. 
             if len(temp_compound_word) !=0:
@@ -60,13 +67,21 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
                 temp_compound_word=[]
                 continue
             else: 
+                # add compound word to filtering result
                 filtering_result.append((" ".join(temp_compound_word), 1))
                 temp_compound_word=[]
-        else: 
-            filtering_result.append((tokenized_text[counter], 0))
-            temp_compound_word=[]
-            counter+=1
+        else:
+            # special case if word matched with part of compound word
+            if len(temp_compound_word) == 1:
+                filtering_result.append((tokenized_text[counter-1], 0))
+                temp_compound_word=[]
+            else: 
+                # add non compound word to filtering result
+                filtering_result.append((tokenized_text[counter], 0))
+                counter+=1
 
+
+#------------------------------------------------------------------------------------------------------
     
     # each iteration increase shift_index by one
     shift_index = 0
@@ -77,9 +92,8 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
     
     print(len(moropholgical_result))
     print(len(filtering_result))
-    print(filtering_result)
-    restructureText(filtering_result,moropholgical_result)
-        
+    
+    restructureText(filtering_result, moropholgical_result)
     
     
     
@@ -90,9 +104,11 @@ def restructureText(filtering_result, moropholgical_result):
     
     
     counter=0
+    # switch between verb and noun(subject)
     while counter < len(filtering_result)-1: 
+        #check if part of speech equal  to verb
         if moropholgical_result[counter]['pos']== 'verb' :
-            
+            # check if part of speech of the following word equal to noun or proper noun 
             if moropholgical_result[counter+1]['pos']== 'noun' or moropholgical_result[counter+1]['pos']== 'noun_prop' :
                 temp_moropholgical_result= moropholgical_result[counter]
                 temp_filtering_result= filtering_result[counter]
@@ -104,13 +120,13 @@ def restructureText(filtering_result, moropholgical_result):
                 
                 moropholgical_result[counter+1]= temp_moropholgical_result
                 filtering_result[counter+1] = temp_filtering_result
-                
+                # increase counter by 2 to exceeds the switched words
                 counter+=2
                 continue
             
-        
+        # if the part of speech not equal to verb increase counter by 1
         counter+=1
-        continue
+       
     
     
     # -------------------------------------------------------------------------------------
@@ -118,18 +134,22 @@ def restructureText(filtering_result, moropholgical_result):
     counter=0
     final_restructuring =[]
     
+    # loop through all the words to produce final restructuring result
     for word in filtering_result: 
+        
+        # skip the compound word
         if word[1]==1:
             final_restructuring.append(word)
             counter+=1
             continue
         
-        lemma= lex_filter(moropholgical_result[counter]['lex'])
-        print(lemma)
+        # filter the lemam to delete extra character 
+        lemma=  re.sub("[^أ-ي]","",moropholgical_result[counter]['lex']) 
         
-        if  moropholgical_result[counter]['pos']== 'noun' or moropholgical_result[counter]['pos']== 'adj':
-            if moropholgical_result[counter]['num']== 's':
-                 if moropholgical_result[counter]['gen']== 'f' and lemma != word[0] and moropholgical_result[counter]['rat']=='r':
+        # check if the POS equals noun or adj to add appropriate word depend on the features and cases  
+        if  moropholgical_result[counter]['pos']== 'noun' or moropholgical_result[counter]['pos']== 'adj' or moropholgical_result[counter]['pos']== 'pron_dem':
+            if moropholgical_result[counter]['num']== 's': # s= singler
+                 if moropholgical_result[counter]['gen']== 'f' and lemma != word[0] and (moropholgical_result[counter]['rat']=='r' or 'y'): # r = rational
                         final_restructuring.append((lemma,0))
                         final_restructuring.append(("أنثى",0))
                         counter+=1
@@ -139,8 +159,8 @@ def restructureText(filtering_result, moropholgical_result):
                       
             # ********************************************************
             else:
-                if moropholgical_result[counter]['num']== 'd':
-                      if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and moropholgical_result[counter]['rat']=='r':
+                if moropholgical_result[counter]['num']== 'd': # d= dual
+                      if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and (moropholgical_result[counter]['rat']=='r' or 'y'): # r = rational 
                             
                             final_restructuring.append((lemma,0))
                             final_restructuring.append(("اثنان",0))
@@ -152,8 +172,8 @@ def restructureText(filtering_result, moropholgical_result):
                           counter+=1
                 # ********************************************************
                 else:
-                    if moropholgical_result[counter]['num']== 'p':
-                          if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and moropholgical_result[counter]['rat']=='r':  
+                    if moropholgical_result[counter]['num']== 'p': # p = plural
+                          if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and (moropholgical_result[counter]['rat']=='r' or 'y'):  # r = rational
                             final_restructuring.append((lemma,0))
                             final_restructuring.append(("كثير",0))
                             final_restructuring.append(("أنثى",0))
@@ -165,16 +185,20 @@ def restructureText(filtering_result, moropholgical_result):
         
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         else: 
-             if moropholgical_result[counter]['pos']== 'verb':
-                 if moropholgical_result[counter]['asp']== 'p':
+            
+            # check if the POS equals verb to add appropriate word depend on the features and cases  
+            if moropholgical_result[counter]['pos']== 'verb':
+                 if moropholgical_result[counter]['asp']== 'p': # p= perfect (which means past tense)
                      final_restructuring.append((lemma,0))
                      final_restructuring.append(("انتهى",0))
                      
                  else: 
-                    if moropholgical_result[counter]['asp']== 'i':
-                        if moropholgical_result[counter]['per']== '1' and moropholgical_result[counter]['num']== 'p':
+                    if moropholgical_result[counter]['asp']== 'i': # i = imperfect (which means present or future tenses)
+                        if moropholgical_result[counter]['per']== '1' and moropholgical_result[counter]['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
                             final_restructuring.append(("نحن",0)) 
-                        if moropholgical_result[counter]['prc1']!= 'sa_fut':
+                            
+                         #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
+                        if moropholgical_result[counter]['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
                             final_restructuring.append((lemma,0))
                             final_restructuring.append(("الآن",0))
                             
@@ -183,9 +207,9 @@ def restructureText(filtering_result, moropholgical_result):
                             final_restructuring.append(("قريبا",0))
                             
                 
-             else: 
-                 final_restructuring.append((lemma,0))
-             counter+=1
+            else: 
+                final_restructuring.append((lemma,0))
+            counter+=1
                         
              
              
@@ -194,7 +218,7 @@ def restructureText(filtering_result, moropholgical_result):
                         
                      
                 
-    
+    print(moropholgical_result)
     print(final_restructuring)
     
     
