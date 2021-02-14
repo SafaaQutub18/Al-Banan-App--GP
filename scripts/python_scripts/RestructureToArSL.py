@@ -31,14 +31,17 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
             
             # loop through the words of lines
             for word_in_line in line.split():
-                
+                if(counter == (len(tokenized_text))):
+                    break
                 # check if the word in file match with the word in "tokenized_text" list
                 if word_in_line==tokenized_text[counter]:
                     #collect each word of the compound_word.
                     temp_compound_word.append(word_in_line) 
                     if len(temp_compound_word) > 1:
                        delete_index.append(counter)
-                    counter+=1
+                    counter+=1   
+                    
+                        
             
             # after finishing each line check if there are compound word stored 
             # in temp_compound_word, that for skip the rest of lines. 
@@ -48,7 +51,7 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
         #check if the temp_compound_word not empty add full compound word in the 
         #filtering_result list , else the add the word filtering_result list. 
         #that for keeping the order of the text.  
-        if len(temp_compound_word) !=0:
+        if len(temp_compound_word) > 1:
             
             # special case for "السلام عليكم ورحمة الله وبركاته"
             if " ".join(temp_compound_word) == "ورحمة الله وبركاته":
@@ -61,6 +64,7 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
                 temp_compound_word=[]
         else: 
             filtering_result.append((tokenized_text[counter], 0))
+            temp_compound_word=[]
             counter+=1
 
     
@@ -71,7 +75,9 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
         shift_index += 1
         
     
-    print(moropholgical_result)
+    print(len(moropholgical_result))
+    print(len(filtering_result))
+    print(filtering_result)
     restructureText(filtering_result,moropholgical_result)
         
     
@@ -82,7 +88,7 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
     
 def restructureText(filtering_result, moropholgical_result):
     
-    # 
+    
     counter=0
     while counter < len(filtering_result)-1: 
         if moropholgical_result[counter]['pos']== 'verb' :
