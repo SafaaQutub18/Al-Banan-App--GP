@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Al-Banan-App--GP/Scenes/upload_video.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
