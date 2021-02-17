@@ -1,32 +1,27 @@
-import re
-
-
-tokenized_text= ['مساء','الله','الخير','السلام','عليكم']
-compound_word_file = open('compound word.txt', 'r', encoding="utf8",) 
+import azure.cognitiveservices.speech as speechsdk
     
-jarr_letters = ["من", "عن", "على",  "حتي", "حتى", "في","الي" , "الى", "إلي", "إلى"] 
-asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
-
-filtering_result = [] 
-counter = 0
-counter2=0
-temp_compound_word=[]
-# delete_index = []
-
-while counter < len(tokenized_text):
+def speechToText(x):
+    global speech_recognizer
     
-    # start from the beginning of file
-        compound_word_file.seek(0) 
+    if x==1:    
+        speech_recognizer.stop_continuous_recognition()
+    else: 
         
-        for line in compound_word_file: 
-            for word_in_line in line:
-                if word_in_line == tokenized_text[counter]:
-                    temp_compound_word=tokenized_text[counter]
-                    counter+=1
-                else: break
-            
-            
-            
-                
-            
-            
+    
+    
+        speech_config = speechsdk.SpeechConfig(subscription="1fda37b270004643b89af5621d9902a2", region="eastasia", )
+        speech_config.speech_recognition_language="ar-SA"
+        speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
+        
+        speech_recognizer.recognized.connect(lambda evt: print('RECOGNIZED: {}'.format(evt.result.text)))
+        speech_recognizer.start_continuous_recognition()
+   
+   
+       
+    
+
+    
+    
+    
+    
+speechToText(0)
