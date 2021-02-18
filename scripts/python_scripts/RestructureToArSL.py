@@ -4,12 +4,13 @@ import re
 # parameter: the tokenized_text: which contains the list of word.
 #            the morphological_result: which contains the analyzed feature that extracted from the words.
 
-def filteringCopoundWord(tokenized_text,moropholgical_result):
+def filteringText(tokenized_text,moropholgical_result):
     # read the compound word file 
     compound_word_file = open('compound word.txt', 'r', encoding="utf8",) 
     
     jarr_letters = ["من", "عن", "على",  "حتي", "حتى", "في","الي" , "الى", "إلي", "إلى"] 
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
+    punctuation_marks = ["." , ":" ,  "،", "؟"]
     filtering_result = [] 
     counter = 0
     
@@ -20,7 +21,7 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
     while counter < len(tokenized_text):
  
         # check if text contains asma_mosola or jarr_letters to delete it
-        if tokenized_text[counter] in asma_mosola or tokenized_text[counter] in jarr_letters:
+        if tokenized_text[counter] in asma_mosola or tokenized_text[counter] in jarr_letters or tokenized_text[counter] in punctuation_marks:
             delete_index.append(counter)
             counter+=1
             continue
@@ -143,80 +144,89 @@ def restructureText(filtering_result, moropholgical_result):
             counter+=1
             continue
         
+        features= moropholgical_result[counter]
         # filter the lemam to delete extra character 
-        lemma=  re.sub("[^أ-ي]","",moropholgical_result[counter]['lex']) 
+        lemma=  re.sub("[^أ-ي آ]","",features['lex']) 
         
+         
         # check if the POS equals noun or adj to add appropriate word depend on the features and cases  
-        if  moropholgical_result[counter]['pos']== 'noun' or moropholgical_result[counter]['pos']== 'adj' or moropholgical_result[counter]['pos']== 'pron_dem':
-            if moropholgical_result[counter]['num']== 's': # s= singler
-                 if moropholgical_result[counter]['gen']== 'f' and lemma != word[0] and (moropholgical_result[counter]['rat']=='r' or 'y'): # r = rational
-                        final_restructuring.append((lemma,0))
-                        final_restructuring.append(("أنثى",0))
-                        counter+=1
-                 else: 
-                      final_restructuring.append((lemma,0))
-                      counter+=1
+        if  features['pos']== 'noun' or features['pos']== 'adj' or features['pos']== 'pron_dem':
+            if features['num']== 's': # s= singler
+                 if features['gen']== 'f' and lemma != word[0] and features['rat']=='r' or features['rat']=='y': # r = rational
+                        final_restructuring.append((lemma,0,features['pos']))
+                        final_restructuring.append(("أنثى",0, 'noun'))
+                        
+                 else: # else if gen = male
+                      final_restructuring.append((lemma,0, features['pos']))
                       
             # ********************************************************
             else:
-                if moropholgical_result[counter]['num']== 'd': # d= dual
-                      if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and (moropholgical_result[counter]['rat']=='r' or 'y'): # r = rational 
+                if features['num']== 'd': # d= dual
+                      if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
                             
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("اثنان",0))
-                            final_restructuring.append(("أنثى",0))
-                            counter+=1
-                      else: 
-                          final_restructuring.append((lemma,0))
-                          final_restructuring.append(("اثنان",0))
-                          counter+=1
+                            final_restructuring.append((lemma,0, features['pos']))
+                            final_restructuring.append(("اثنان",0,'noun'))
+                            final_restructuring.append(("أنثى",0, 'noun'))
+                            
+                      else:  # else if gen = male
+                          final_restructuring.append((lemma,0, features['pos']))
+                          final_restructuring.append(("اثنان",0,'noun'))
                 # ********************************************************
                 else:
-                    if moropholgical_result[counter]['num']== 'p': # p = plural
-                          if moropholgical_result[counter]['gen']== 'f' and re.search( 'ة', lemma ) == None and (moropholgical_result[counter]['rat']=='r' or 'y'):  # r = rational
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("كثير",0))
-                            final_restructuring.append(("أنثى",0))
-                            counter+=1
-                          else: 
-                              final_restructuring.append((lemma,0))
-                              final_restructuring.append(("كثير",0))
-                              counter+=1
+                    if features['num']== 'p': # p = plural
+                          if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
+                            final_restructuring.append((lemma,0, features['pos']))
+                            final_restructuring.append(("كثير",0,'noun'))
+                            final_restructuring.append(("أنثى",0,'noun'))
+                            
+                          else:  # else if gen = male
+                              final_restructuring.append((lemma,0, features['pos']))
+                              final_restructuring.append(("كثير",0, 'noun'))
+            counter+=1
         
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         else: 
             
             # check if the POS equals verb to add appropriate word depend on the features and cases  
-            if moropholgical_result[counter]['pos']== 'verb':
-                 if moropholgical_result[counter]['asp']== 'p': # p= perfect (which means past tense)
-                     final_restructuring.append((lemma,0))
-                     final_restructuring.append(("انتهى",0))
+            if features['pos']== 'verb':
+                 if features['asp']== 'p': # p= perfect (which means past tense)
+                     final_restructuring.append((lemma,0, features['pos']))
+                     final_restructuring.append(("انتهى",0,'verb'))
                      
                  else: 
-                    if moropholgical_result[counter]['asp']== 'i': # i = imperfect (which means present or future tenses)
-                        if moropholgical_result[counter]['per']== '1' and moropholgical_result[counter]['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
-                            final_restructuring.append(("نحن",0)) 
+                    if features['asp']== 'i': # i = imperfect (which means present or future tenses)
+                        if features['per']== '1' and features['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
+                            final_restructuring.append(("نحن",0,'prop')) 
                             
                          #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
-                        if moropholgical_result[counter]['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("الآن",0))
+                        if features['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
+                            final_restructuring.append((lemma,0,features['pos']))
+                            final_restructuring.append(("الآن",0,'noun'))
                             
                         else: 
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("قريبا",0))
-                            
+                            final_restructuring.append((lemma,0, features['pos']))
+                            final_restructuring.append(("قريبا",0, 'adj'))
+            else:
                 
-            else: 
-                final_restructuring.append((lemma,0))
+                #check for Interrogative names (أسماء الاستفهام)
+                if features['pos']=='adv_rel' or features['pos']=='pron_rel' or features['pos']=='adv_interrog' or features['pos']=='pron_interrog' or features['pos']=='part_interrog' :
+                    final_restructuring.append(("استفهام",0, 'noun'))
+                    final_restructuring.append((lemma,0, features['pos']))
+                    
+                else:
+                    if features['pos']=='digit': 
+                         final_restructuring.append(re.sub(("[0-9]+","",word[0],0, features['pos'])))          
+                    
+                    else:
+                         #check for the arabic letters
+                        if features['pos']=='abbrev': 
+                            final_restructuring.append((lemma,0, features['pos']))
+
+                        else:
+                            final_restructuring.append((lemma,0, None))
             counter+=1
-                        
-             
-             
-                 
-        
-                        
-                     
+                
+                           
                 
     print(moropholgical_result)
     print(final_restructuring)
@@ -225,6 +235,9 @@ def restructureText(filtering_result, moropholgical_result):
 
 def lex_filter(lemma):
     return re.sub("[^أ-ي]","",lemma)
+
+
+
     
 
             

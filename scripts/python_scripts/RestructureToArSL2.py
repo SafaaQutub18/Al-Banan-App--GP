@@ -7,6 +7,8 @@ compound_word_file = open('compound word.txt', 'r', encoding="utf8",)
     
 jarr_letters = ["من", "عن", "على",  "حتي", "حتى", "في","الي" , "الى", "إلي", "إلى"] 
 asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
+
+
 filtering_result = [] 
 counter = 0
 temp_compound_word=[]
@@ -15,7 +17,7 @@ delete_index = []
 
 
   
-def filteringCopoundWord(tokenized_text,moropholgical_result):
+def filteringText(tokenized_text,moropholgical_result):
     # read the compound word file 
     global counter
     global temp_compound_word
@@ -47,14 +49,12 @@ def filteringCopoundWord(tokenized_text,moropholgical_result):
         shift_index += 1
         
     
-    print(len(moropholgical_result))
-    print(len(filtering_result))
+    print("len: ",len(moropholgical_result))
+    print("lwn: " , len(filtering_result))
     
     restructureText(filtering_result, moropholgical_result)
     
     
-    
- 
  
     
 def restructureText(filtering_result, moropholgical_result):
