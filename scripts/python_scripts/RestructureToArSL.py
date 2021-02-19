@@ -160,70 +160,63 @@ def restructureText(filtering_result, moropholgical_result):
                       final_restructuring.append((lemma,0))
                       
             # ********************************************************
-            else:
-                if features['num']== 'd': # d= dual
-                      if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
-                            
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("2",2))
-                            final_restructuring.append(("أنثى",0))
-                            
-                      else:  # else if gen = male
-                          final_restructuring.append((lemma,0))
-                          final_restructuring.append(("2",2))
-                # ********************************************************
-                else:
-                    if features['num']== 'p': # p = plural
-                          if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("كثير",0))
-                            final_restructuring.append(("أنثى",0))
-                            
-                          else:  # else if gen = male
-                              final_restructuring.append((lemma,0))
-                              final_restructuring.append(("كثير",0))
-            counter+=1
-        
-        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        else: 
-            
-            # check if the POS equals verb to add appropriate word depend on the features and cases  
-            if features['pos']== 'verb':
-                 if features['asp']== 'p': # p= perfect (which means past tense)
-                     final_restructuring.append((lemma,0))
-                     final_restructuring.append(("انتهى",0))
-                     
-                 else: 
-                    if features['asp']== 'i': # i = imperfect (which means present or future tenses)
-                        if features['per']== '1' and features['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
-                            final_restructuring.append(("نحن",0)) 
-                            
-                         #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
-                        if features['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("الآن",0))
-                            
-                        else: 
-                            final_restructuring.append((lemma,0))
-                            final_restructuring.append(("قريبا",0))
-            else:
-                
-                #check for Interrogative names (أسماء الاستفهام)
-                if features['pos']=='adv_rel' or features['pos']=='pron_rel' or features['pos']=='adv_interrog' or features['pos']=='pron_interrog' or features['pos']=='part_interrog' :
-                    final_restructuring.append(("استفهام",0))
+            elif features['num']== 'd': # d= dual
+                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
+                      
+                      final_restructuring.append((lemma,0))
+                      final_restructuring.append(("2",2))
+                      final_restructuring.append(("أنثى",0))
+                      
+                else:  # else if gen = male
                     final_restructuring.append((lemma,0))
-                    
-                else:
-                    if features['pos']=='digit': 
-                         final_restructuring.append(re.sub(("[0-9]+","",word[0],2)))              
-                    else:
-                         #check for the arabic letters
-                         if features['pos']=='abbrev': 
-                             final_restructuring.append((lemma,3))
-                             
-                         else:
-                            final_restructuring.append((lemma,0))
-            counter+=1
+                    final_restructuring.append(("2",2))
+            # ********************************************************
+            elif features['num']== 'p': # p = plural
+                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
+                  final_restructuring.append((lemma,0))
+                  final_restructuring.append(("كثير",0))
+                  final_restructuring.append(("أنثى",0))
+                  
+                else:  # else if gen = male
+                    final_restructuring.append((lemma,0))
+                    final_restructuring.append(("كثير",0))
+       
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        # check if the POS equals verb to add appropriate word depend on the features and cases 
+        
+        elif features['pos']== 'verb':
+            if features['asp']== 'p': # p= perfect (which means past tense)
+                final_restructuring.append((lemma,0))
+                final_restructuring.append(("انتهى",0))
+                
+            elif features['asp']== 'i': # i = imperfect (which means present or future tenses)
+               if features['per']== '1' and features['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
+                   final_restructuring.append(("نحن",0)) 
+                   
+                #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
+               if features['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
+                   final_restructuring.append((lemma,0))
+                   final_restructuring.append(("الآن",0))
+                   
+               else: 
+                   final_restructuring.append((lemma,0))
+                   final_restructuring.append(("قريبا",0))
+                            
+        #check for Interrogative names (أسماء الاستفهام)                
+        elif features['pos']=='adv_rel' or features['pos']=='pron_rel' or features['pos']=='adv_interrog' or features['pos']=='pron_interrog' or features['pos']=='part_interrog' :
+            final_restructuring.append(("استفهام",0))
+            final_restructuring.append((lemma,0))
+                
+        elif features['pos']=='digit': 
+            final_restructuring.append(re.sub(("[0-9]+","",word[0],2)))              
+            
+            #check for the arabic letters
+        elif features['pos']=='abbrev': 
+            final_restructuring.append((lemma,3))
+                     
+        else:
+           final_restructuring.append((lemma,0))
+        counter+=1
                 
                            
                 

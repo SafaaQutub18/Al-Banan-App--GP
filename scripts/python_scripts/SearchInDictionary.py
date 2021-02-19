@@ -61,7 +61,7 @@ def splitDigit(digits):
           
 
 
-x= [("0",2)]
+x= [("0",2) ]
 textChecker(x)
 
 
