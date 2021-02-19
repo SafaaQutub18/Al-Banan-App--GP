@@ -6,7 +6,6 @@ from camel_tools.tokenizers.word import simple_word_tokenize
 
 def  tokenizeText(fullstring):
     print(fullstring)
-    print('-----------------------------------------')
     tokenized_text= simple_word_tokenize(fullstring)
     extractMorphologicalFeatures(tokenized_text)
     
