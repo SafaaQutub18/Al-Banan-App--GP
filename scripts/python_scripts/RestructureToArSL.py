@@ -71,15 +71,15 @@ def filteringText(tokenized_text,moropholgical_result):
                 # add compound word to filtering result
                 filtering_result.append((" ".join(temp_compound_word), 1))
                 temp_compound_word=[]
-        else:
-            # special case if word matched with part of compound word
-            if len(temp_compound_word) == 1:
-                filtering_result.append((tokenized_text[counter-1], 0))
-                temp_compound_word=[]
-            else: 
-                # add non compound word to filtering result
-                filtering_result.append((tokenized_text[counter], 0))
-                counter+=1
+                
+        # special case if word matched with part of compound word
+        elif len(temp_compound_word) == 1:
+            filtering_result.append((tokenized_text[counter-1], 0))
+            temp_compound_word=[]
+        else: 
+            # add non compound word to filtering result
+            filtering_result.append((tokenized_text[counter], 0))
+            counter+=1
 
 
 #------------------------------------------------------------------------------------------------------
