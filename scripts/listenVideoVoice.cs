@@ -56,7 +56,7 @@ public class listenVideoVoice : MonoBehaviour
         
         NetworkStream nwStream = client.GetStream();
         byte[] buffer = new byte[client.ReceiveBufferSize];
-        print("tototototototototototototototototo");
+        //print("tototototototototototototototototo");
         byte[] myWriteBuffer = Encoding.ASCII.GetBytes(running); //Converting string to byte data
             nwStream.Write(myWriteBuffer, 0, myWriteBuffer.Length); //Sending the data in Bytes to Python
 
@@ -68,7 +68,7 @@ public class listenVideoVoice : MonoBehaviour
         { 
            //---Using received data---
             print(dataReceived);
-            print("helloooooooooooooooooo");
+           // print("helloooooooooooooooooo");
         }
 
     }
