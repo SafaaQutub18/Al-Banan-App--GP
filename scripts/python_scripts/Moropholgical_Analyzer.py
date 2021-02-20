@@ -11,7 +11,7 @@ def  tokenizeText(fullstring):
     extractMorphologicalFeatures(tokenized_text)
     
     
-def extractMorphologicalFeatures(tokenized_text):
+def extractMorphologicalFeatures(tokenized_text ):
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
     mle = MLEDisambiguator.pretrained()
     

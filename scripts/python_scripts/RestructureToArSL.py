@@ -1,4 +1,4 @@
-
+from SearchInDictionary import textChecker
 import re
 # filtering the compound word and word in text. 
 # parameter: the tokenized_text: which contains the list of word.
@@ -91,8 +91,6 @@ def filteringText(tokenized_text,moropholgical_result):
         shift_index += 1
         
     
-    print(len(moropholgical_result))
-    print(len(filtering_result))
     
     restructureText(filtering_result, moropholgical_result)
     
@@ -228,14 +226,12 @@ def restructureText(filtering_result, moropholgical_result):
                 
                            
                 
-    print(moropholgical_result)
+    
     print(final_restructuring)
     
+    textChecker(final_restructuring)
     
-
-def lex_filter(lemma):
-    return re.sub("[^أ-ي]","",lemma)
-
+    
 
 
     

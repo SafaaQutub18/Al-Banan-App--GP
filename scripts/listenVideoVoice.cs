@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 using System.Threading;
 
-public class Connect_python : MonoBehaviour
+public class listenVideoVoice : MonoBehaviour
 {
  Thread mThread;
     public string connectionIP = "127.0.0.1";
@@ -14,15 +14,20 @@ public class Connect_python : MonoBehaviour
     IPAddress localAdd;
     TcpListener listener;
     TcpClient client;
-    bool running = false;
+    string running = "false";
 
     public void Open()
     {
-        if (running == true) {
+        if (running.Equals("true")) {
+        running = "false";
+        SendAndReceiveData();
         listener.Stop();
         Debug.Log("Stop listener");
-        running = false;
-        } else {
+        
+        
+        
+        } 
+        else {
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
@@ -39,8 +44,8 @@ public class Connect_python : MonoBehaviour
 
         client = listener.AcceptTcpClient();
 
-        running = true;
-        while (running)
+        running = "true";
+        while (running.Equals("true"))
         {
             SendAndReceiveData();
         }
@@ -48,18 +53,22 @@ public class Connect_python : MonoBehaviour
 
     void SendAndReceiveData()
     {
+        
         NetworkStream nwStream = client.GetStream();
         byte[] buffer = new byte[client.ReceiveBufferSize];
+        print("tototototototototototototototototo");
+        byte[] myWriteBuffer = Encoding.ASCII.GetBytes(running); //Converting string to byte data
+            nwStream.Write(myWriteBuffer, 0, myWriteBuffer.Length); //Sending the data in Bytes to Python
 
         //---receiving Data from the Host----
         int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize); //Getting data in Bytes from Python
         string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead); //Converting byte data to string
-
+        
         if (dataReceived != null)
         { 
            //---Using received data---
             print(dataReceived);
-            print ("Helllooooooooo");
+            print("helloooooooooooooooooo");
         }
 
     }
