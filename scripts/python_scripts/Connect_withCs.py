@@ -16,8 +16,8 @@ start_recognition = sock.recv(1024).decode("UTF-8") # receiveing data in Byte fr
 
 def representSign(sign_id): 
     print("safaaaaaaaaaaaaaaaaaaaaaaaaaa",sign_id)
-    sign_id="sa"
+    
 
-    sock.sendall(sign_id.encode("UTF-8"))
+    sock.sendall(str(sign_id).encode("UTF-8"))
     
     

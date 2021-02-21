@@ -50,13 +50,16 @@ def textChecker(restructured_text):
                     
             
 def splitWordToLetters(word,sock):
+    print("inside letter")
     list_of_letters = list(word)
     for letter in list_of_letters:
+         print("inside letter and for")
         #data frame letter which containe row from the table 
          df_letter= letters_file[letters_file.letteres.eq(letter)]
          letter_id = df_letter['letter_id'].iloc[0]
          #ock.sendall(letter_id.encode("UTF-8"))
-         representSign(letter_id)  
+         representSign(letter_id)
+         print(letter_id)
          
 def splitDigit(digits,sock):
     list_of_digits = list(digits)
