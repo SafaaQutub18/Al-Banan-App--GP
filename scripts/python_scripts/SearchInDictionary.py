@@ -49,7 +49,7 @@ def textChecker(restructured_text):
             representSign(letter_id) 
                     
             
-def splitWordToLetters(word,sock):
+def splitWordToLetters(word):
     print("inside letter")
     list_of_letters = list(word)
     for letter in list_of_letters:
@@ -61,7 +61,7 @@ def splitWordToLetters(word,sock):
          representSign(letter_id)
          print(letter_id)
          
-def splitDigit(digits,sock):
+def splitDigit(digits):
     list_of_digits = list(digits)
     for digit in list_of_digits:
          #data frame letter which containe row from the table 
@@ -69,7 +69,4 @@ def splitDigit(digits,sock):
          digit_id = df_digit['digit_id'].iloc[0]
          #sock.sendall(digit_id.encode("UTF-8"))
          representSign(digit_id) 
-
-
-
 
