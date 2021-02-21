@@ -4,14 +4,14 @@ from camel_tools.disambig.mle import MLEDisambiguator
 from camel_tools.tokenizers.word import simple_word_tokenize
 
 
-def  tokenizeText(fullstring):
+def  tokenizeText(fullstring ,sock):
     print(fullstring)
-    print('-----------------------------------------')
+    
     tokenized_text= simple_word_tokenize(fullstring)
-    extractMorphologicalFeatures(tokenized_text)
+    extractMorphologicalFeatures(tokenized_text,sock )
     
     
-def extractMorphologicalFeatures(tokenized_text ):
+def extractMorphologicalFeatures(tokenized_text,sock):
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
     mle = MLEDisambiguator.pretrained()
     
@@ -21,8 +21,8 @@ def extractMorphologicalFeatures(tokenized_text ):
     
     # get morophlogical features of each word
     moropholgical_result = [features_of_word.analyses[0].analysis for features_of_word in max_likelihood_solutions]
-   
-    filteringText(tokenized_text,moropholgical_result)
+    print('-----------------------------------------')
+    filteringText(tokenized_text,moropholgical_result,sock)
     
 
 

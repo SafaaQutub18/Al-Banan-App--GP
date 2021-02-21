@@ -7,7 +7,7 @@ import re
 
  
 
-def filteringText(tokenized_text,moropholgical_result):
+def filteringText(tokenized_text,moropholgical_result,sock):
     # read the compound word file 
     compound_word_file = open('compound word.txt', 'r', encoding="utf8",) 
     
@@ -99,14 +99,14 @@ def filteringText(tokenized_text,moropholgical_result):
     print(len(moropholgical_result))
     print(len(filtering_result))
     
-    restructureText(filtering_result, moropholgical_result)
+    restructureText(filtering_result, moropholgical_result ,sock)
     
     
     
  
  
     
-def restructureText(filtering_result, moropholgical_result):
+def restructureText(filtering_result, moropholgical_result ,sock):
     
     
     counter=0
@@ -213,7 +213,7 @@ def restructureText(filtering_result, moropholgical_result):
             final_restructuring.append((lemma,0))
                 
         elif features['pos']=='digit': 
-            final_restructuring.append(re.sub(("[0-9]+","",word[0],2)))              
+            final_restructuring.append((re.sub("[^0-9]","",word[0]),2))              
             
             #check for the arabic letters
         elif features['pos']=='abbrev': 
@@ -228,7 +228,7 @@ def restructureText(filtering_result, moropholgical_result):
   
     print(final_restructuring)
     
-    textChecker(final_restructuring)
+    textChecker(final_restructuring ,sock)
 
  
 
