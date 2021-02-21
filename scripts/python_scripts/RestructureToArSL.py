@@ -83,8 +83,11 @@ def filteringText(tokenized_text,moropholgical_result,sock):
             # add non compound word to filtering result
             filtering_result.append((tokenized_text[counter], 0))
             counter+=1
+<<<<<<< HEAD
 
  
+=======
+>>>>>>> master
 
 
 #------------------------------------------------------------------------------------------------------
@@ -163,8 +166,24 @@ def restructureText(filtering_result, moropholgical_result ,sock):
                         
                  else: # else if gen = male
                       final_restructuring.append((lemma,0))
+<<<<<<< HEAD
     
    # ********************************************************
+            elif features['num']== 'd': # d= dual
+                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
+=======
+>>>>>>> master
+                      
+                      final_restructuring.append((lemma,0))
+                      final_restructuring.append(("2",2))
+                      final_restructuring.append(("أنثى",0))
+                      
+                else:  # else if gen = male
+                    final_restructuring.append((lemma,0))
+                    final_restructuring.append(("2",2))
+            # ********************************************************
+<<<<<<< HEAD
+=======
             elif features['num']== 'd': # d= dual
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
                       
@@ -176,6 +195,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
                     final_restructuring.append((lemma,0))
                     final_restructuring.append(("2",2))
             # ********************************************************
+>>>>>>> master
             elif features['num']== 'p': # p = plural
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
                   final_restructuring.append((lemma,0))
@@ -213,7 +233,11 @@ def restructureText(filtering_result, moropholgical_result ,sock):
             final_restructuring.append((lemma,0))
                 
         elif features['pos']=='digit': 
+<<<<<<< HEAD
             final_restructuring.append((re.sub("[^0-9]","",word[0]),2))              
+=======
+            final_restructuring.append(re.sub(("[0-9]+","",word[0],2)))              
+>>>>>>> master
             
             #check for the arabic letters
         elif features['pos']=='abbrev': 
