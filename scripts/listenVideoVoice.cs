@@ -5,8 +5,11 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using System.Threading;
+
 public class listenVideoVoice : MonoBehaviour
 {
+
+    
 
 
  Thread mThread;
@@ -51,9 +54,17 @@ public class listenVideoVoice : MonoBehaviour
         byte[] buffer = new byte[client.ReceiveBufferSize];
         int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize); //Getting data in Bytes from Python
         string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead); //Converting byte data to string
-        
+        Avatar avatar = new Avatar();
+
         if (dataReceived != null){
            //---Using received data---
+
+
+        string[] signs_id_list = dataReceived.Split(',');
+          foreach (var sign_id in signs_id_list){​​
+          avatar.sign_id =  Int64.Parse(sign_id); 
+          
+          }​​
             print(dataReceived);
         }
 

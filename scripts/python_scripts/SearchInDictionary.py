@@ -2,6 +2,7 @@
 import pandas as pd
 
 
+#Read files of each Dictionaries and 
 compWord_file = pd.read_csv('compoundWords_Dictionary.csv',delimiter=',')
 letters_file = pd.read_csv('letters_Dictionary.csv',delimiter=',' )
 digits_file = pd.read_csv('digit_Dictionary.csv', delimiter=',' )
@@ -38,7 +39,7 @@ def textChecker(restructured_text ,sock):
         elif word[1] == 2: 
             splitDigit(word[0],sock)
         elif word[1] == 3: 
-            df_letter= letters_file[letters_file.letteres.eq(word)]
+            df_letter= letters_file[letters_file.letteres.eq(word[0])]
             letter_id = df_letter['letter_id'].iloc[0]
             letter_id =(str(letter_id)+",")
             sock.sendall(str(letter_id).encode("UTF-8"))
