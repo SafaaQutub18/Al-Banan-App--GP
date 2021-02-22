@@ -39,8 +39,8 @@ namespace SimpleWebBrowser
                 if (Background == null)
                     Background = gameObject.transform.Find("Background").gameObject.GetComponent<Image>();
             }
-            if (Back == null)
-                Back = gameObject.transform.Find("Back").gameObject.GetComponent<Button>();
+            //if (Back == null)
+               // Back = gameObject.transform.Find("Back").gameObject.GetComponent<Button>();
          
         }
 
@@ -52,7 +52,7 @@ namespace SimpleWebBrowser
             UrlField.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
             UrlField.placeholder.gameObject.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
             UrlField.textComponent.gameObject.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
-            Back.gameObject.SetActive(true);
+            //Back.gameObject.SetActive(true);
             Background.GetComponent<CanvasRenderer>().SetAlpha(1.0f);
         }
 
@@ -65,7 +65,7 @@ namespace SimpleWebBrowser
                     UrlField.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
                     UrlField.placeholder.gameObject.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
                     UrlField.textComponent.gameObject.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
-                    Back.gameObject.SetActive(false);
+                    //Back.gameObject.SetActive(false);
                     Background.GetComponent<CanvasRenderer>().SetAlpha(0.0f);
                 }
                 else

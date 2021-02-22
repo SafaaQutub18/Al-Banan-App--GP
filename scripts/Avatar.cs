@@ -10,7 +10,7 @@ public class Avatar : MonoBehaviour
 {
 
 
-Animator animator;
+    Animator animator;
 
   
 
@@ -21,8 +21,15 @@ Animator animator;
   }
 
  
-   private int sign_id // property
-  { get; set; }
+   private static int sign_id; // property
+ 
+    public void setSignId(int sign){
+        
+    sign_id = sign;
+
+    }
+
+ 
 
     // Use this for initialization
     void Start () {
@@ -31,24 +38,18 @@ Animator animator;
     
     // Update is called once per frame
     void Update () {
-       representSign();
-       
+   
+          //representSign();
+          
+          animator.SetInteger("Id", sign_id);
     }
 
     public void representSign(){
 
-    animator.SetInteger("Id", sign_id);
+  
 
     }
 
 
-
-
-    void OnCollisionEnter(Collision col) {
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            animator.SetTrigger("Die");
-        }
-    }
 
 }

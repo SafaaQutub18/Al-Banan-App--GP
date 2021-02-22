@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 using System.Threading;
-
+using System;
 public class listenVideoVoice : MonoBehaviour
 {
 
@@ -58,13 +58,14 @@ public class listenVideoVoice : MonoBehaviour
 
         if (dataReceived != null){
            //---Using received data---
+        int x = 0;   
+        string[] signs_id_list = dataReceived.Split(' ');
+        foreach(string sign_id in signs_id_list){
+            
+            avatar.setSignId(Int16.Parse(dataReceived));
+        }
 
-
-        string[] signs_id_list = dataReceived.Split(',');
-          foreach (var sign_id in signs_id_list){​​
-          avatar.sign_id =  Int64.Parse(sign_id); 
-          
-          }​​
+        
             print(dataReceived);
         }
 
