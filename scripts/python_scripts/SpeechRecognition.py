@@ -18,7 +18,7 @@ def convertSpeechToText():
         speech_recognizer.start_continuous_recognition()
         
         
-        time.sleep(20)
+        time.sleep(50)
         speech_recognizer.stop_continuous_recognition()
 
 convertSpeechToText()

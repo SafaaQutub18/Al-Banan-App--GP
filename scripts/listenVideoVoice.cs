@@ -6,11 +6,7 @@ using System.Text;
 using UnityEngine;
 using System.Threading;
 using System;
-public class listenVideoVoice : MonoBehaviour
-{
-
-    
-
+public class listenVideoVoice : MonoBehaviour{
 
  Thread mThread;
     public string connectionIP = "127.0.0.1";
@@ -59,14 +55,14 @@ public class listenVideoVoice : MonoBehaviour
         if (dataReceived != null){
            //---Using received data---
         int x = 0;   
-        string[] signs_id_list = dataReceived.Split(' ');
-        foreach(string sign_id in signs_id_list){
-            
-            avatar.setSignId(Int16.Parse(dataReceived));
-        }
+        string[] signs_id_list = dataReceived.Split(',');
 
-        
-            print(dataReceived);
+        foreach(string sign_id in signs_id_list){
+            if(!sign_id.Equals(" "))
+             avatar.setSignId(Int32.Parse(sign_id));
+             print(sign_id);
+        }
+            
         }
 
     }
