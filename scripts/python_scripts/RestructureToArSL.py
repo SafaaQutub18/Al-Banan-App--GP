@@ -57,7 +57,7 @@ def filteringText(tokenized_text,moropholgical_result,sock):
             # after finishing each line check if there are compound word stored 
             # in temp_compound_word, that for skip the rest of lines. 
             if len(temp_compound_word) !=0:
-                    break
+                    continue
         
         #check if the temp_compound_word not empty add full compound word in the 
         #filtering_result list , else the add the word filtering_result list. 
