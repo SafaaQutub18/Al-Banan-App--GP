@@ -146,7 +146,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
    # ********************************************************
 
             elif features['num']== 'd': # d= dual
-                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
+                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and (features['rat']=='r' or features['rat']=='y'): # r = rational 
                       
                       final_restructuring.append((lemma,0))
                       final_restructuring.append(("2",2))
