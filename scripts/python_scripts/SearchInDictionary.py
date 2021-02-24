@@ -7,7 +7,7 @@ compWord_file = pd.read_csv('compoundWords_Dictionary.csv',delimiter=',')
 letters_file = pd.read_csv('letters_Dictionary.csv',delimiter=',' )
 digits_file = pd.read_csv('digit_Dictionary.csv', delimiter=',' )
 words_file = pd.read_csv('words_Dictionary.csv',delimiter=',')
-
+verb_words_file = pd.read_csv('verbs_Dictionary.csv',delimiter=',')
 
 sign_id=0
 
@@ -26,7 +26,18 @@ def textChecker(restructured_text ,sock):
                 #representSign(word_id)
             else:
                 splitWordToLetters(word[0] ,sock)
-                
+        
+        if word[1] == 2:
+            df_verb=verb_words_file[verb_words_file.verb_words.eq(word[0])]
+            
+            if verb_words_file.verb_words.eq(word[0]).any():
+                verb_id = df_verb['verb_id'].iloc[0]
+                print(verb_id)
+                verb_id = (str(verb_id)+", ")
+                sock.sendall(verb_id.encode("UTF-8"))
+                #representSign(word_id)
+            else:
+                splitWordToLetters(word[0] ,sock)
                 
         elif word[1] == 1:
             df_compWord=compWord_file[compWord_file.compWord.eq(word[0])]
