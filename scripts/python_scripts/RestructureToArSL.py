@@ -149,7 +149,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and (features['rat']=='r' or features['rat']=='y'): # r = rational 
                       
                       final_restructuring.append((lemma,0))
-                      final_restructuring.append(("2",2))
+                      final_restructuring.append(("2",3))
                       final_restructuring.append(("أنثى",0))
                       
                 else:  # else if gen = male
