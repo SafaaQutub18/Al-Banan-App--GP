@@ -124,7 +124,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
          
         # check if the POS equals noun or adj to add appropriate word depend on the features and cases  
         if  features['pos']== 'noun' or features['pos']== 'adj' or features['pos']== 'pron_dem':
-            if features['form_num']== 's': # s= singler
+            if features['num']== 's': # s= singler
                  if features['gen']== 'f' and lemma != word[0] and features['rat']=='r' or features['rat']=='y': # r = rational
                         final_restructuring.append((lemma,0))
                         final_restructuring.append(("أنثى",0))
@@ -135,7 +135,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
     
    # ********************************************************
 
-            elif features['form_num']== 'd': # d= dual
+            elif features['num']== 'd': # d= dual
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
                       
                       final_restructuring.append((lemma,0))
@@ -147,7 +147,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
                     final_restructuring.append(("2",2))
             # ********************************************************
 
-            elif features['form_num']== 'p': # p = plural
+            elif features['num']== 'p': # p = plural
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
                   final_restructuring.append((lemma,0))
                   final_restructuring.append(("كثير",0))
