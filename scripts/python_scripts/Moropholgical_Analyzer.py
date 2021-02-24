@@ -4,14 +4,14 @@ from camel_tools.disambig.mle import MLEDisambiguator
 from camel_tools.tokenizers.word import simple_word_tokenize
 
 
-def  tokenizeText(fullstring ,sock):
+def  tokenizeText(fullstring):
     print(fullstring)
 
     tokenized_text= simple_word_tokenize(fullstring)
-    extractMorphologicalFeatures(tokenized_text,sock )
+    extractMorphologicalFeatures(tokenized_text )
     
     
-def extractMorphologicalFeatures(tokenized_text,sock):
+def extractMorphologicalFeatures(tokenized_text):
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
     mle = MLEDisambiguator.pretrained()
     
@@ -21,8 +21,9 @@ def extractMorphologicalFeatures(tokenized_text,sock):
     
     # get morophlogical features of each word
     moropholgical_result = [features_of_word.analyses[0].analysis for features_of_word in max_likelihood_solutions]
-    print('-----------------------------------------')
-    filteringText(tokenized_text,moropholgical_result,sock)
+    print(moropholgical_result)
+    filteringText(tokenized_text,moropholgical_result)
+    
     
 
-
+tokenizeText("كيف الحال وردة كيف حالك")

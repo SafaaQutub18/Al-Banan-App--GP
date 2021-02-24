@@ -1,4 +1,4 @@
-from SearchInDictionary import textChecker
+#from SearchInDictionary import textChecker
 import re
 # filtering the compound word and word in text. 
 # parameter: the tokenized_text: which contains the list of word.
@@ -7,7 +7,7 @@ import re
 
  
 
-def filteringText(tokenized_text,moropholgical_result,sock):
+def filteringText(tokenized_text,moropholgical_result):
     # read the compound word file 
     compound_word_file = open('compound word.txt', 'r', encoding="utf8",) 
     
@@ -17,7 +17,6 @@ def filteringText(tokenized_text,moropholgical_result,sock):
     filtering_result = [] 
     counter = 0
     
-    temp_compound_word=[]
     delete_index = []
     
     # loop through the text word by word
@@ -29,6 +28,7 @@ def filteringText(tokenized_text,moropholgical_result,sock):
             counter+=1
             continue
         
+        
         # start from the beginning of file
         compound_word_file.seek(0)  
         
@@ -37,7 +37,7 @@ def filteringText(tokenized_text,moropholgical_result,sock):
             
             # loop through the words of lines
             for word_in_line in line.split():
-                
+                temp_compound_word=[]
                 #prevent counter from out of range exeption 
                 if(counter == (len(tokenized_text))):
                    break
@@ -53,11 +53,6 @@ def filteringText(tokenized_text,moropholgical_result,sock):
                        delete_index.append(counter)
                     counter+=1 
               
-                    
-            # after finishing each line check if there are compound word stored 
-            # in temp_compound_word, that for skip the rest of lines. 
-            if len(temp_compound_word) !=0:
-                    break
         
         #check if the temp_compound_word not empty add full compound word in the 
         #filtering_result list , else the add the word filtering_result list. 
@@ -91,48 +86,16 @@ def filteringText(tokenized_text,moropholgical_result,sock):
     for index in delete_index:
         del moropholgical_result[index - shift_index]
         shift_index += 1
-        
+     
     
-    print(len(moropholgical_result))
-    print(len(filtering_result))
-    
-    restructureText(filtering_result, moropholgical_result ,sock)
+    restructureText(filtering_result, moropholgical_result)
     
     
     
  
  
     
-def restructureText(filtering_result, moropholgical_result ,sock):
-    
-    
-    counter=0
-    # switch between verb and noun(subject)
-    while counter < len(filtering_result)-1: 
-        #check if part of speech equal  to verb
-        if moropholgical_result[counter]['pos']== 'verb' :
-            # check if part of speech of the following word equal to noun or proper noun 
-            if moropholgical_result[counter+1]['pos']== 'noun' or moropholgical_result[counter+1]['pos']== 'noun_prop' :
-                temp_moropholgical_result= moropholgical_result[counter]
-                temp_filtering_result= filtering_result[counter]
-                
-                
-                moropholgical_result[counter]= moropholgical_result[counter+1]
-                filtering_result[counter] = filtering_result[counter+1]
-                
-                
-                moropholgical_result[counter+1]= temp_moropholgical_result
-                filtering_result[counter+1] = temp_filtering_result
-                # increase counter by 2 to exceeds the switched words
-                counter+=2
-                continue
-            
-        # if the part of speech not equal to verb increase counter by 1
-        counter+=1
-       
-    
-    
-    # -------------------------------------------------------------------------------------
+def restructureText(filtering_result, moropholgical_result):
     
     counter=0
     final_restructuring =[]
@@ -148,12 +111,12 @@ def restructureText(filtering_result, moropholgical_result ,sock):
         
         features= moropholgical_result[counter]
         # filter the lemam to delete extra character 
-        lemma=  re.sub("[^أ-ي آ]","",features['lex']) 
+        lemma= dediac(features['lex']) 
         
          
         # check if the POS equals noun or adj to add appropriate word depend on the features and cases  
         if  features['pos']== 'noun' or features['pos']== 'adj' or features['pos']== 'pron_dem':
-            if features['num']== 's': # s= singler
+            if features['form_num']== 's': # s= singler
                  if features['gen']== 'f' and lemma != word[0] and features['rat']=='r' or features['rat']=='y': # r = rational
                         final_restructuring.append((lemma,0))
                         final_restructuring.append(("أنثى",0))
@@ -164,7 +127,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
     
    # ********************************************************
 
-            elif features['num']== 'd': # d= dual
+            elif features['form_num']== 'd': # d= dual
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y': # r = rational 
                       
                       final_restructuring.append((lemma,0))
@@ -176,7 +139,7 @@ def restructureText(filtering_result, moropholgical_result ,sock):
                     final_restructuring.append(("2",2))
             # ********************************************************
 
-            elif features['num']== 'p': # p = plural
+            elif features['form_num']== 'p': # p = plural
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
                   final_restructuring.append((lemma,0))
                   final_restructuring.append(("كثير",0))
@@ -191,47 +154,48 @@ def restructureText(filtering_result, moropholgical_result ,sock):
         
         elif features['pos']== 'verb':
             if features['asp']== 'p': # p= perfect (which means past tense)
-                final_restructuring.append((lemma,0))
-                final_restructuring.append(("انتهى",0))
+                final_restructuring.append((lemma,2))
+                final_restructuring.append(("ٱنتهى",0))
                 
             elif features['asp']== 'i': # i = imperfect (which means present or future tenses)
-               if features['per']== '1' and features['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
+               if features['per']== '1' and features['form_num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
                    final_restructuring.append(("نحن",0)) 
                    
                 #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
                if features['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
-                   final_restructuring.append((lemma,0))
-                   final_restructuring.append(("الآن",0))
+                   final_restructuring.append((lemma,2))
+                   final_restructuring.append(("آن",0))
                    
                else: 
-                   final_restructuring.append((lemma,0))
-                   final_restructuring.append(("قريبا",0))
+                   final_restructuring.append((lemma,2))
+                   final_restructuring.append(("قريب",0))
                             
         #check for Interrogative names (أسماء الاستفهام)                
         elif features['pos']=='adv_rel' or features['pos']=='pron_rel' or features['pos']=='adv_interrog' or features['pos']=='pron_interrog' or features['pos']=='part_interrog' :
-            final_restructuring.append(("استفهام",0))
+            final_restructuring.append(("ٱستفهام",0))
             final_restructuring.append((lemma,0))
                 
         elif features['pos']=='digit': 
-            final_restructuring.append((re.sub("[^0-9]","",word[0]),2))            
+            final_restructuring.append((re.sub("[^0-9]","",word[0]),3))            
             #check for the arabic letters
         elif features['pos']=='abbrev': 
-            final_restructuring.append((lemma,3))
-                     
+            final_restructuring.append((lemma,4))
+        elif features['pos']=='prep': 
+            final_restructuring.append((word[0],0))
         else:
            final_restructuring.append((lemma,0))
         counter+=1
-                
                            
                 
   
     print(final_restructuring)
     
-    textChecker(final_restructuring ,sock)
+    #textChecker(final_restructuring ,sock)
 
  
 
-
+def dediac(diac_word):
+    return re.sub("[^أ-ي آ ٱ]","",diac_word) 
 
             
     
