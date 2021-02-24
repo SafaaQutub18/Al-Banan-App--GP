@@ -14,6 +14,8 @@ def filteringText(tokenized_text,moropholgical_result,sock):
     jarr_letters = ["من", "عن", "على",  "حتي", "حتى", "في","الي" , "الى", "إلي", "إلى"] 
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
     punctuation_marks = ["." , ":" ,  "،", "؟"]
+    numbers = [('واحد',1), ('اثنين',2),('ثلاثة',3),('اربعة', 4),('خمسة', 5),('ستة', 6),('سبعة',7),('ثمانية', 8),('تسعة',9),('عشرة',10)
+,('صفر',0), ('اثنان',2),('ثلاث',3),('اربع', 4),('خمس', 5),('ست', 6),('سبع',7),('ثمان', 8),('تسع',9),('عشر',10)]
     filtering_result = [] 
     counter = 0
     
@@ -28,6 +30,13 @@ def filteringText(tokenized_text,moropholgical_result,sock):
             delete_index.append(counter)
             counter+=1
             continue
+        
+        for num in numbers:
+            if tokenized_text[counter] == num[0]:
+               moropholgical_result[counter]['lex'] = str(num[1])
+               moropholgical_result[counter]['pos'] = 'digit'
+               tokenized_text[counter] = str(num[1])
+               break
         
         # start from the beginning of file
         compound_word_file.seek(0)  
