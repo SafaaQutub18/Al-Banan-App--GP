@@ -169,24 +169,19 @@ def restructureText(filtering_result, moropholgical_result ,sock):
        
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         # check if the POS equals verb to add appropriate word depend on the features and cases 
-        
+                    
         elif features['pos']== 'verb':
-            if features['asp']== 'p': # p= perfect (which means past tense)
-                final_restructuring.append((lemma,2))
-                final_restructuring.append(("ٱنتهى",0))
-                
-            elif features['asp']== 'i': # i = imperfect (which means present or future tenses)
-               if features['per']== '1' and features['form_num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural 
-                   final_restructuring.append(("نحن",0)) 
-                   
-                #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
+            if features['asp']== 'i': # i = imperfect (which means present or future tenses)
+               if features['per']== '1' and features['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural
+                  final_restructuring.append(("نحن",0))
+            #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
                if features['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
-                   final_restructuring.append((lemma,2))
-                   final_restructuring.append(("آن",0))
-                   
-               else: 
-                   final_restructuring.append((lemma,2))
-                   final_restructuring.append(("قريب",0))
+                  final_restructuring.append((lemma,2))
+               else:
+                  final_restructuring.append((lemma,2))
+                  final_restructuring.append(("قريب",0))
+            else:
+                  final_restructuring.append((lemma,2))
                             
         #check for Interrogative names (أسماء الاستفهام)                
         elif features['pos']=='adv_rel' or features['pos']=='pron_rel' or features['pos']=='adv_interrog' or features['pos']=='pron_interrog' or features['pos']=='part_interrog' :
