@@ -129,7 +129,8 @@ def restructureText(filtering_result, moropholgical_result ,sock):
         features= moropholgical_result[counter]
         # filter the lemam to delete extra character 
         lemma=  re.sub("[^أ-ي ٱآ]","",features['lex']) 
-        
+        if (re.sub("[^ك+_]","",features['atbtok'])) == 'ك+_' :
+            final_restructuring.append(("مثل",0))
          
         # check if the POS equals noun or adj to add appropriate word depend on the features and cases  
         if  features['pos']== 'noun' or features['pos']== 'adj' or features['pos']== 'pron_dem':
