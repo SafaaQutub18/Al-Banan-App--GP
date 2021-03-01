@@ -8,7 +8,7 @@ using UnityEditor;
 
 //using UnityEngine.Networking;
 
-public class Upload_video : MonoBehaviour
+public class VideoUploader : MonoBehaviour
 {
     
     private VideoPlayer videoPlayer;

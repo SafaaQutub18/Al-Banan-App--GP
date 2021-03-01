@@ -4,10 +4,10 @@ from camel_tools.disambig.mle import MLEDisambiguator
 from camel_tools.tokenizers.word import simple_word_tokenize
 
 
-def  tokenizeText(fullstring ,sock):
-    print(fullstring)
+def  tokenizeText(text ,sock):
+    print(text)
 
-    tokenized_text= simple_word_tokenize(fullstring)
+    tokenized_text= simple_word_tokenize(text)
     extractMorphologicalFeatures(tokenized_text,sock )
     
     
