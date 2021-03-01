@@ -7,8 +7,7 @@ using MessageLibrary;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace SimpleWebBrowser
-{
+
     public interface IDynamicRequestHandler {
         string Request(string url, string query);
     }
@@ -570,4 +569,3 @@ namespace SimpleWebBrowser
         }
     }
    
-}

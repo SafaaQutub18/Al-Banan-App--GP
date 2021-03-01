@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 using System.Threading;
 using System;
-public class listenVideoVoice : MonoBehaviour{
+public class VoiceListener : MonoBehaviour{
 
  Thread mThread;
     public string connectionIP = "127.0.0.1";
@@ -17,7 +17,7 @@ public class listenVideoVoice : MonoBehaviour{
     string running = "false";
 
 
-    public void Open()
+    public void startStopListening()
     {
         if (running.Equals("true")) {
         running = "false";

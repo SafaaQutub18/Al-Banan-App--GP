@@ -7,9 +7,8 @@ using MessageLibrary;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace SimpleWebBrowser
-{
-    public class WebBrowser2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,
+
+    public class WebBrowser : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler,
         IPointerUpHandler
     {
 
@@ -288,7 +287,7 @@ namespace SimpleWebBrowser
 
         #region UI
 
-        public void OnNavigate()
+        public void openURL()
         {
             if(mainUIPanel!=null)
             _mainEngine.SendNavigateEvent(mainUIPanel.UrlField.text, false, false);
@@ -609,4 +608,3 @@ if (UIEnabled)
             }
         }
     }
-}

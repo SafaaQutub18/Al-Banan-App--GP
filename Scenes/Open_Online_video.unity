@@ -655,7 +655,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 198459635}
-        m_MethodName: Open
+        m_MethodName: startStopListening
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 198459630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183fcbdd2c2a6a447b45102bf0b30d89, type: 3}
+  m_Script: {fileID: 11500000, guid: fafce8d6cf5974e41a7770fe78b251ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   connectionIP: 127.0.0.1
@@ -2148,7 +2148,7 @@ GameObject:
   - component: {fileID: 224000013935859793}
   - component: {fileID: 222000011565406781}
   - component: {fileID: 114000013335951519}
-  - component: {fileID: 1202077314884005229}
+  - component: {fileID: 1000012127684126}
   m_Layer: 5
   m_Name: Browser2D
   m_TagString: Untagged
@@ -2156,6 +2156,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1000012127684126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012127684125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2940e5e2b130be439654491faf19af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 1024
+  Height: 768
+  AutoFitParent: 1
+  MemoryFile: MainSharedMem
+  RandomMemoryFile: 1
+  InitialURL: http://www.google.com
+  StreamingResourceName: 
+  EnableWebRTC: 0
+  EnableGPU: 0
+  JSInitializationCode: 
+  Browser2D: {fileID: 0}
+  mainUIPanel: {fileID: 0}
+  KeepUIVisible: 0
+  UIEnabled: 1
+  DialogPanel: {fileID: 0}
+  DialogText: {fileID: 0}
+  OkButton: {fileID: 0}
+  YesButton: {fileID: 0}
+  NoButton: {fileID: 0}
+  DialogPrompt: {fileID: 0}
 --- !u!1 &1000012606932457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,8 +2617,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1202077314884005229}
-        m_MethodName: OnNavigate
+      - m_Target: {fileID: 1000012127684126}
+        m_MethodName: openURL
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2791,38 +2823,6 @@ RectTransform:
   m_AnchoredPosition: {x: 371.29, y: -511}
   m_SizeDelta: {x: 525.4243, y: 321.41168}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1202077314884005229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000012127684125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fcb6c51730c6e54cb75469dec9c1c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Width: 1024
-  Height: 768
-  AutoFitParent: 1
-  MemoryFile: MainSharedMem
-  RandomMemoryFile: 1
-  InitialURL: http://www.google.com
-  StreamingResourceName: 
-  EnableWebRTC: 0
-  EnableGPU: 0
-  JSInitializationCode: 
-  Browser2D: {fileID: 0}
-  mainUIPanel: {fileID: 0}
-  KeepUIVisible: 0
-  UIEnabled: 1
-  DialogPanel: {fileID: 0}
-  DialogText: {fileID: 0}
-  OkButton: {fileID: 0}
-  YesButton: {fileID: 0}
-  NoButton: {fileID: 0}
-  DialogPrompt: {fileID: 0}
 --- !u!114 &2651233802437587332
 MonoBehaviour:
   m_ObjectHideFlags: 0

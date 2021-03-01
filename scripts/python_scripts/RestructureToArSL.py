@@ -1,4 +1,4 @@
-from SearchInDictionary import textChecker
+from SearchInDictionary import checkText
 import re
 # filtering the compound word and word in text. 
 # parameter: the tokenized_text: which contains the list of word.
@@ -115,14 +115,14 @@ def filteringText(tokenized_text,moropholgical_result,sock):
 def restructureText(filtering_result, moropholgical_result ,sock):
         
     counter=0
-    final_restructuring =[]
+    restructured_text =[]
     
     # loop through all the words to produce final restructuring result
     for word in filtering_result: 
         
         # skip the compound word
         if word[1]==1:
-            final_restructuring.append(word)
+            restructured_text.append(word)
             counter+=1
             continue
         
@@ -130,17 +130,17 @@ def restructureText(filtering_result, moropholgical_result ,sock):
         # filter the lemam to delete extra character 
         lemma=  re.sub("[^أ-ي ٱآ]","",features['lex']) 
         if (re.sub("[^ك+_]","",features['atbtok'])) == 'ك+_' :
-            final_restructuring.append(("مثل",0))
+            restructured_text.append(("مثل",0))
          
         # check if the POS equals noun or adj to add appropriate word depend on the features and cases  
         if  features['pos']== 'noun' or features['pos']== 'adj' or features['pos']== 'pron_dem':
             if features['num']== 's': # s= singler
                  if features['gen']== 'f' and lemma != word[0] and features['rat']=='r' or features['rat']=='y': # r = rational
-                        final_restructuring.append((lemma,0))
-                        final_restructuring.append(("أنثى",0))
+                        restructured_text.append((lemma,0))
+                        restructured_text.append(("أنثى",0))
                         
                  else: # else if gen = male
-                      final_restructuring.append((lemma,0))
+                      restructured_text.append((lemma,0))
 
     
    # ********************************************************
@@ -148,24 +148,26 @@ def restructureText(filtering_result, moropholgical_result ,sock):
             elif features['num']== 'd': # d= dual
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and (features['rat']=='r' or features['rat']=='y'): # r = rational 
                       
+
                       final_restructuring.append((lemma,0))
                       final_restructuring.append(("2",3))
                       final_restructuring.append(("أنثى",0))
+
                       
                 else:  # else if gen = male
-                    final_restructuring.append((lemma,0))
-                    final_restructuring.append(("2",2))
+                    restructured_text.append((lemma,0))
+                    restructured_text.append(("2",2))
             # ********************************************************
 
             elif features['num']== 'p': # p = plural
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r = rational
-                  final_restructuring.append((lemma,0))
-                  final_restructuring.append(("كثير",0))
-                  final_restructuring.append(("أنثى",0))
+                  restructured_text.append((lemma,0))
+                  restructured_text.append(("كثير",0))
+                  restructured_text.append(("أنثى",0))
                   
                 else:  # else if gen = male
-                    final_restructuring.append((lemma,0))
-                    final_restructuring.append(("كثير",0))
+                    restructured_text.append((lemma,0))
+                    restructured_text.append(("كثير",0))
        
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         # check if the POS equals verb to add appropriate word depend on the features and cases 
@@ -173,38 +175,38 @@ def restructureText(filtering_result, moropholgical_result ,sock):
         elif features['pos']== 'verb':
             if features['asp']== 'i': # i = imperfect (which means present or future tenses)
                if features['per']== '1' and features['num']== 'p': # per= person , 1 = first person (which means we or I) ,p = plural
-                  final_restructuring.append(("نحن",0))
+                  restructured_text.append(("نحن",0))
             #chexk if the verb start with 'سـ' letter to distinguish between the presen and future
                if features['prc1']!= 'sa_fut': #sa_fut = 'سـ' future letter
-                  final_restructuring.append((lemma,2))
+                  restructured_text.append((lemma,2))
                else:
-                  final_restructuring.append((lemma,2))
-                  final_restructuring.append(("قريب",0))
+                  restructured_text.append((lemma,2))
+                  restructured_text.append(("قريب",0))
             else:
-                  final_restructuring.append((lemma,2))
+                  restructured_text.append((lemma,2))
                             
         #check for Interrogative names (أسماء الاستفهام)                
         elif features['pos']=='adv_rel' or features['pos']=='pron_rel' or features['pos']=='adv_interrog' or features['pos']=='pron_interrog' or features['pos']=='part_interrog' :
-            final_restructuring.append(("استفهام",0))
-            final_restructuring.append((lemma,0))
+            restructured_text.append(("استفهام",0))
+            restructured_text.append((lemma,0))
                 
         elif features['pos']=='digit': 
-            final_restructuring.append((re.sub("[^0-9]","",word[0]),3))            
+            restructured_text.append((re.sub("[^0-9]","",word[0]),3))            
             #check for the arabic letters
         elif features['pos']=='abbrev': 
-            final_restructuring.append((lemma,4))
+            restructured_text.append((lemma,4))
         elif features['pos']=='prep':
-            final_restructuring.append((word[0],0))             
+            restructured_text.append((word[0],0))             
         else:
-           final_restructuring.append((lemma,0))
+           restructured_text.append((lemma,0))
         counter+=1
                 
                            
                 
   
-    print(final_restructuring)
+    print(restructured_text)
     
-    textChecker(final_restructuring ,sock)
+    checkText(restructured_text ,sock)
 
  
 
