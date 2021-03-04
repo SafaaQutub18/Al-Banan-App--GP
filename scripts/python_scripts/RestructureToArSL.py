@@ -7,10 +7,6 @@ import re
  
 
 
- 
-
- 
-
 def filteringText(tokenized_text,moropholgical_result):
     # read the compound word file 
     compound_word_file = open('compound word.txt', 'r', encoding="utf8",) 
