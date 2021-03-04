@@ -72,22 +72,22 @@ def filteringText(tokenized_text,moropholgical_result,sock):
                     
             # after finishing each line check if there are compound word stored 
             # in temp_compound_words, that for skip the rest of lines. 
-            if len(temp_compound_words) !=0:
-                    continue
+            #if len(temp_compound_words) !=0:
+             #       continue
         
-        # check if the temp_compound_words not empty add full compound word in the 
-        # filtering_result list , else the add the word filtering_result list. 
-        # that for keeping the order of the text.  
+        # check if the temp_compound_words not empty then add full compound word in the 
+        # filtering_result list with 1 mark , else add the word in filtering_result list with '0' mark. 
         if len(temp_compound_words) > 1:
             
-            # special case for "السلام عليكم ورحمة الله وبركاته"
+            # special case for "السلام عليكم ورحمة الله وبركاته" compound word to make it equals to "السلام عليكم" 
             if " ".join(temp_compound_words) == "ورحمة الله وبركاته":
-                # add index with index of "ورحمة" before the index "الله وبركاته"
+                # add index of "ورحمة" before the index of "الله وبركاته" to delete them, because index  
+                 #  of "رحمة" not stored in line 69
                 delete_index.insert(len(delete_index)-2, counter-2)
                 temp_compound_words=[]
                 continue
             else: 
-                # add compound word to filtering result
+                # add compound words to filtering result
                 filtering_result.append((" ".join(temp_compound_words), 1))
                 temp_compound_words=[]
                 
@@ -102,40 +102,49 @@ def filteringText(tokenized_text,moropholgical_result,sock):
 
 #------------------------------------------------------------------------------------------------------
     
-    # each iteration increase shift_index by one
+    # each iteration delete the indexe that stored in "delete_index" list from "moropholgical_result" list.
     shift_index = 0
     for index in delete_index:
         del moropholgical_result[index - shift_index]
         shift_index += 1
-        
-    
-    print(len(moropholgical_result))
-    print(len(filtering_result))
     
     restructureText(filtering_result, moropholgical_result ,sock)
     
+  
     
-    
- 
- 
-    
+  
+# restructure the text as follows: 
+# 1- Delete the extra word that have no signs in ArSL such as: prepositions, relative pronouns, punctuation marks
+# 2- Converting written numbers in text to digits
+# 3- put a mark of compound word that have on sign in ArSL and collect them in one index
+
+# parameter: the tokenized_text: which contains the list of word.
+#            the morphological_result: which contains the analyzed feature that extracted from the words.
+  
+   
 def restructureText(filtering_result, moropholgical_result ,sock):
         
     counter=0
+    
+    # list of text after restructuring
     restructured_text =[]
     
     # loop through all the words to produce final restructuring result
     for word in filtering_result: 
         
-        # skip the compound word
+        # skip the compound words becuse there are no need to restructure them.
         if word[1]==1:
             restructured_text.append(word)
             counter+=1
             continue
         
+        # assign the moropholgical_result to features variables
         features= moropholgical_result[counter]
+        
         # filter the lemam to delete extra character 
         lemma=  re.sub("[^أ-ي ٱآ]","",features['lex']) 
+        
+        # add "مثل" word to express about "ك"
         if (re.sub("[^ك+_]","",features['atbtok'])) == 'ك+_' :
             restructured_text.append(("مثل",0))
          
