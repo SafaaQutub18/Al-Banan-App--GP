@@ -23,6 +23,7 @@ def filteringText(tokenized_text,moropholgical_result,sock):
     # list of text after filtering
     filtering_result = [] 
     counter = 0
+    counter2=0
     # A temporary variable to store the word and check the next word to determine if these words are compound words or not 
     temp_compound_words=[]
     # list for collect the indexes that should deleted from the moropholgical_result list 
@@ -50,7 +51,8 @@ def filteringText(tokenized_text,moropholgical_result,sock):
         
         # loop through the lines of file 
         for line in compound_words_file:
-            
+            word_num= len(line.split())
+            counter2 = 0
             # loop through the words of lines
             for word_in_line in line.split():
                 
@@ -58,35 +60,40 @@ def filteringText(tokenized_text,moropholgical_result,sock):
                 if(counter == (len(tokenized_text))):
                    break
                
+                if counter2 == 0 :
+                    if word_in_line!=tokenized_text[counter]:
+                        break
                 # check if the word in file match with the word in "tokenized_text" list
+                
                 if word_in_line==tokenized_text[counter]:
-                    
                     #collect each word of the compound words.
                     temp_compound_words.append(word_in_line) 
                     
                     # check if temp_compound_words contains more than one word, then add the indexes of the word after the first word to delete_index list
                     if len(temp_compound_words) > 1:
                        delete_index.append(counter)
-                    counter+=1 
-              
-                    
+                    counter+=1
+                    print(counter2)
+                counter2+=1
+            if word_num == len(temp_compound_words):
+                break
+                
             # after finishing each line check if there are compound word stored 
             # in temp_compound_words, that for skip the rest of lines. 
-            #if len(temp_compound_words) !=0:
-             #       continue
+            if len(temp_compound_words) !=0:
+                    break
         
         # check if the temp_compound_words not empty then add full compound word in the 
         # filtering_result list with 1 mark , else add the word in filtering_result list with '0' mark. 
         if len(temp_compound_words) > 1:
-            
-            # special case for "السلام عليكم ورحمة الله وبركاته" compound word to make it equals to "السلام عليكم" 
+            # special case for "السلام عليكم ورحمة الله وبركاته" compound word to make it equals to "السلام عليكم"
             if " ".join(temp_compound_words) == "ورحمة الله وبركاته":
-                # add index of "ورحمة" before the index of "الله وبركاته" to delete them, because index  
+                # add index of "ورحمة" before the index of "الله وبركاته" to delete them, because index
                  #  of "رحمة" not stored in line 69
                 delete_index.insert(len(delete_index)-2, counter-2)
                 temp_compound_words=[]
                 continue
-            else: 
+            else:
                 # add compound words to filtering result
                 filtering_result.append((" ".join(temp_compound_words), 1))
                 temp_compound_words=[]
