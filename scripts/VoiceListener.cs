@@ -60,7 +60,7 @@ public class VoiceListener : MonoBehaviour{
         foreach(string sign_id in signs_id_list){
             if(!sign_id.Equals(" "))
              avatar.setSignId(Int32.Parse(sign_id));
-             print(sign_id);
+             print("Fast"+sign_id);
         }
             
         }
