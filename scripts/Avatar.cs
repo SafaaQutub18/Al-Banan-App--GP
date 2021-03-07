@@ -20,9 +20,7 @@ public class Avatar : MonoBehaviour{
   public void setSignId(int sign){     
       
     sign_id = sign;
-      print("Mediam"+sign_id);
       iList.Add(sign_id);
-      print("Listt "+iList[0]);
       
       
       //add.list_num(sign);
@@ -42,7 +40,7 @@ public class Avatar : MonoBehaviour{
 
         
         
-        System.Threading.Thread.Sleep(3000);
+        System.Threading.Thread.Sleep(5000);
         
         if(animator.GetInteger("Id") != iList[0]){
             animator.SetTrigger("Trigger");
@@ -56,7 +54,7 @@ public class Avatar : MonoBehaviour{
         iList.RemoveAt(0);
         
       
-    }    else print("cococococococ"+iList.Count);
+    }    
  
         
     }    
