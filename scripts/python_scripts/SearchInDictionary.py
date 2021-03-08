@@ -13,9 +13,10 @@ verb_words_file = pd.read_csv('verbs_Dictionary.csv',delimiter=',')
 # function used for searching for the word in dictionary files, if it exists the sign id will be returned 
 # otherwise the system calls the “splitWordToLetters” or “splitDigit” functions to return the id of each letter or digit.
 def checkText(restructured_text ,sock):
-    
+    #print("checkText", restructured_text)
     # loop through the restructured_text list     
-    for word in restructured_text:   
+    for word in restructured_text: 
+        #print("search", word)
         if word[1] == 0: # check for words
             df_word=words_file[words_file.words.eq(word[0])]
             
