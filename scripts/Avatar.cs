@@ -21,26 +21,21 @@ public class Avatar : MonoBehaviour{
       
     sign_id = sign;
       iList.Add(sign_id);
-      
-      
+         
       //add.list_num(sign);
-      
-      
+       
     }    
     // Use this for initialization
     void Start () {    
         animator = GetComponent<Animator>();
+     InvokeRepeating("SlowUpdate", 0.0f, 2.5f);
         iList.Add(0);
     }    
  
     // Update is called once per frame
-    void Update () {     
+    void SlowUpdate () {     
        
-    if(iList.Count >0){   
-
-        
-        
-        System.Threading.Thread.Sleep(5000);
+    if(iList.Count >0){  
         
         if(animator.GetInteger("Id") != iList[0]){
             animator.SetTrigger("Trigger");
@@ -48,8 +43,7 @@ public class Avatar : MonoBehaviour{
         }
              animator.SetInteger("Id",iList[0]);
         //}
-        
-       
+  
       print("Slow"+iList[0]);
         iList.RemoveAt(0);
         
