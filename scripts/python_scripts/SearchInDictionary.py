@@ -21,7 +21,7 @@ def checkText(restructured_text ,sock):
             df_word=words_file[words_file.words.eq(word[0])]
             
             # check if the word exist, return the word id 
-            if words_file.words.eq(word[0]).any():
+            if not df_word.empty:
                 word_id = df_word['words_id'].iloc[0]
                 print(word_id)
                 word_id = (str(word_id)+", ")
@@ -48,7 +48,7 @@ def checkText(restructured_text ,sock):
             df_verb=verb_words_file[verb_words_file.verb_words.eq(word[0])]
             
             # check if the verb exist, return the verb id 
-            if verb_words_file.verb_words.eq(word[0]).any():
+            if not df_verb.empty:
                 verb_id = df_verb['verb_id'].iloc[0]
                 print(verb_id)
                 verb_id = (str(verb_id)+", ")
@@ -60,9 +60,9 @@ def checkText(restructured_text ,sock):
                 splitWordToLetters(word[0] ,sock)   
                 
         elif word[1] == 3: # check for digits
-        
-            df_digit=digits_file[digits_file.digits.eq(word[0])]
-            if digits_file.digits.eq(word[0]).any():
+            df_digit= digits_file[digits_file.digits.eq(word[0])]
+            
+            if not df_digit.empty:
                 digit_id = df_digit['digit_id'].iloc[0]
                 print(digit_id)
                 digit_id = (str(digit_id)+", ")

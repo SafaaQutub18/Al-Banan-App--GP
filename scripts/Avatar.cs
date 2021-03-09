@@ -7,50 +7,44 @@ using System.Threading;
 
  
 public class Avatar : MonoBehaviour{    
- 
-   private static int sign_id; // property 
-   public static List<int> iList = new List<int>();
-   Animator animator;
-    //List<int> list_num = new List<int>();
-    
- 
-  // Create a class constructor with a parameter
-  public Avatar(){    }    
- 
-  public void setSignId(int sign){     
-      
-    sign_id = sign;
-      iList.Add(sign_id);
-         
-      //add.list_num(sign);
-       
-    }    
-    // Use this for initialization
-    void Start () {    
-        animator = GetComponent<Animator>();
-     InvokeRepeating("SlowUpdate", 0.0f, 2.5f);
-        iList.Add(0);
-    }    
- 
-    // Update is called once per frame
-    void SlowUpdate () {     
-       
-    if(iList.Count >0){  
-        
-        if(animator.GetInteger("Id") != iList[0]){
-            animator.SetTrigger("Trigger");
 
-        }
-             animator.SetInteger("Id",iList[0]);
-        //}
+   // list for storing the signs of the words  
+   public static List<int> list_signId = new List<int>();
+   // declere object
+   Animator animator;
+    
+  // Create a class constructor
+  public Avatar(){    }    
   
-      print("Slow"+iList[0]);
-        iList.RemoveAt(0);
-        
-      
+  public void setSignId(int sign_id){  
+     //add sign id to list  
+     list_signId.Add(sign_id);    
+    }    
+
+    // Use this function for initialization
+    void Start () { 
+      //initialize the animator object
+      animator = GetComponent<Animator>();
+
+      // invoke representSign function every 2.5 sec
+      InvokeRepeating("representSign", 0.0f, 2.5f);
     }    
  
+    void representSign () {   
+
+      //check if there are signs in the list  
+      if(list_signId.Count >0){  
+
+        // stop reapeting of sign
+        animator.SetTrigger("Trigger");
+
+        //set the avatar animator parameter(Id)
+        animator.SetInteger("Id",list_signId[0]);
+        print("sign id"+list_signId[0]);
         
+        //remove the represented sign from the list
+        list_signId.RemoveAt(0);   
+     }      
     }    
  
     

@@ -11,7 +11,6 @@ sock.connect((host, port))
 
 # function to convert Speech-To-Text using azure-cognitiveservices-speech 
 def convertSpeechToText():
-    
         global sock
         speech_config = speechsdk.SpeechConfig(subscription="1fda37b270004643b89af5621d9902a2", region="eastasia", )
         speech_config.speech_recognition_language="ar-SA"
