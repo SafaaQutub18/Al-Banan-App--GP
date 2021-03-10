@@ -1,9 +1,10 @@
 import re
 
 
-text= (['صباح','صفاء', 'السلام', 'عليكم', 'ورحمة', 'الله', 'صلى','وسلم', 'كيف', 'السلام', 'عليكم',''])
+text= "الخير السلام عليكم ورحمة الله وبركاته السلام عليكم كيف الحال كيف حالك روعة صباح الخير مندي الخير مساء"
 
-def filteringText(text,tokenized_text,moropholgical_result,sock):
+#def filteringText(text,tokenized_text,moropholgical_result,sock):
+def filteringText(text):
     
       # read the compound word file 
     compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
@@ -19,40 +20,53 @@ def filteringText(text,tokenized_text,moropholgical_result,sock):
     compWord_indexes=[]
     
     # list of text after filtering
-    filtering_result = [] 
-    
-    # counter of while loop 
-    counter = 0
-
-
-    
+    filtering_result = []  
    
     # loop through the lines of file   
     for line in compound_words_file :
+        # loop to search on the compound words in text and store the start and end indexes
         for m in re.finditer(line.strip() , text):
-            if line.strip()=='':
+            if line.strip()=='': # break if arrive to end of lines
                 break
-            compWord_indexes.append(m.span())
+            compWord_indexes.append(m.span()) # store the start-end indexes of compWord
     
-   
-    temp=""
-    while counter < len(text):          
-        if(text[counter] != " ") :
-            temp+=(text[counter])
-        else:
-            if(temp!=""):
-                filtering_result.append((temp, 0))  
-                temp=""
-        counter+=1
+    
+   # A temporary variable inside the loop to collect the character of the word
+    temp_words=""
+    # counter of while loop 
+    counter = 0
+    
+    
+   # counter of for loop 
+    counter2 = 0
+    
+    # loop throw evry char in text
+    while counter < len(text):  
+         if(text[counter] != " ") :
+             counter2=counter
+             for index in compWord_indexes:
+                 
+                 if index[0]== counter:
+                    filtering_result.append((text[index[0]:index[1]], 1))
+                    counter+= len(text[index[0]:index[1]])
+                    break
+             if counter2==counter:
+                 print(text[counter])
+                 temp_words+=(text[counter]) #collect the character of evry word
+                 
+         else:
+             filtering_result.append((temp_words, 0))  
+             temp_words=""
+         counter+=1
+             
+             
+    if temp_words!="":
+        filtering_result.append((temp_words, 0)) 
         
-        for index in compWord_indexes:
-            print(index[0])
-            if index[0]== counter:
-                filtering_result.append((text[index[0]:index[1]], 1))
-                counter+= len(text[index[0]:index[1]])
-                break
-            
-        if counter >= len(text): break
+        
+       
+        
+        
         
        
         
@@ -61,3 +75,4 @@ def filteringText(text,tokenized_text,moropholgical_result,sock):
         
         
         
+filteringText(text)
