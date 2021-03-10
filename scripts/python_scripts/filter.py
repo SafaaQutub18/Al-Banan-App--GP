@@ -63,18 +63,32 @@ def filteringText(text,moropholgical_result):
     if temp_words!="":
         filtering_result.append((temp_words, 0)) 
         
-        
+    #--------------------------------------------------------------------------------------------------------------------    
         
     deleted_index_num = 0 
     counter = 0
     while counter < len(filtering_result):
         
-        if filtering_result[counter][1] == 0:
-            print(filtering_result[counter][0])
-            counter +=1
+        word = filtering_result[counter]
+        
+        if word[1] == 0:
+            
+            if word[0] in asma_mosola or word[0] in punctuation_marks or moropholgical_result[counter]['pos'] =='prep':
+                del moropholgical_result[counter]
+                del filtering_result[counter]
+            
+            #******************************************
+                
+            for num in numbers:
+                 if word[0] == num[0]:
+                        moropholgical_result[counter]['lex'] = str(num[1])
+                        moropholgical_result[counter]['pos'] = 'digit'
+                        word[0] = str(num[1])
+                        break
+            counter+=1
             continue
         else:
-            deleted_index_num = len(filtering_result[counter][0].split())-1
+            deleted_index_num = len(word[0].split())-1
             print(deleted_index_num)
             shift_index = 0
             for index in range(counter ,counter+deleted_index_num):

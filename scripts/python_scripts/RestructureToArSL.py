@@ -9,125 +9,107 @@ import re
 # parameter: the tokenized_text: which contains the list of word.
 #            the morphological_result: which contains the analyzed feature that extracted from the words.
 
-def filteringText(tokenized_text,moropholgical_result,sock):
-    # read the compound word file 
+def filteringText(text,tokenized_text,moropholgical_result,sock):
+
+      # read the compound word file 
     compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
     
     # declare the  prepositions, relative pronouns, punctuation marks, numbers
    
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
     punctuation_marks = ["." , ":" ,  "،", "؟"]
-    numbers = [('واحد',1), ('اثنين',2),('ثلاثة',3),('اربعة', 4),('خمسة', 5),('ستة', 6),('سبعة',7),('ثمانية', 8),('تسعة',9),('عشرة',10)
-,('صفر',0), ('اثنان',2),('ثلاث',3),('اربع', 4),('خمس', 5),('ست', 6),('سبع',7),('ثمان', 8),('تسع',9),('عشر',10)]
+   
     
+    # list for the indexes of compword
+    compWord_indexes=[]
+   
+    text = " ".join(tokenized_text)
     # list of text after filtering
-    filtering_result = [] 
+    filtering_result = []  
+   
+    # loop through the lines of file   
+    for line in compound_words_file :
+        # loop to search on the compound words in text and store the start and end indexes
+        for m in re.finditer(line.strip() , text):
+            if line.strip()=='': # break if arrive to end of lines
+                break
+            compWord_indexes.append(m.span()) # store the start-end indexes of compWord
     
+    
+   # A temporary variable inside the loop to collect the character of the word
+    temp_words=""
     # counter of while loop 
     counter = 0
     
-    # counter of nested for loop 
-    counter2=0
     
-    # A temporary variable to store the word and check the next word to determine if these words are compound words or not 
-    temp_compound_words=[]
+   # counter of for loop 
+    counter2 = 0
     
-    # list for collect the indexes that should deleted from the moropholgical_result list 
-    delete_index = []
-    
-    # loop through the text word by word
-    while counter < len(tokenized_text):
- 
-        # check if text contains asma_mosola  or punctuation_marks or part of speech is preposetion to delete it
-        if tokenized_text[counter] in asma_mosola or tokenized_text[counter] in punctuation_marks or moropholgical_result[counter]['pos'] =='prep':
-            delete_index.append(counter)
-            counter+=1
-            continue
-        
-        # loop to replace each text number to digit
-        for num in numbers:
-            if tokenized_text[counter] == num[0]:
-               moropholgical_result[counter]['lex'] = str(num[1])
-               moropholgical_result[counter]['pos'] = 'digit'
-               tokenized_text[counter] = str(num[1])
-               break
-        
-        # start from the beginning of file
-        compound_words_file.seek(0)  
-        
-        # loop through the lines of file 
-        for line in compound_words_file:
-            
-            # assign the number of words in a line 
-            word_num= len(line.split())
-            counter2 = 0
-            
-            # loop through the words of lines
-            for word_in_line in line.split():
-                
-                # prevent counter from out of range exeption 
-                if(counter == (len(tokenized_text))):
-                   break
-               # check the first word of the line and break if it is not match with tokenized_text[counter]
-                if counter2 == 0 :
-                    if word_in_line!=tokenized_text[counter]:
-                        break
-                    
-                # check if the word in file match with the word in "tokenized_text" list
-                if word_in_line==tokenized_text[counter]:
-                    #collect each word of the compound words.
-                    temp_compound_words.append(word_in_line) 
-                    
-                    # check if temp_compound_words contains more than one word, then add the indexes of the word after the first word to delete_index list
-                    if len(temp_compound_words) > 1:
-                       delete_index.append(counter)
-                    counter+=1
-                counter2+=1
-                
-                
-            # after finishing each line check if there are compound word stored 
-            # in temp_compound_words, to skip the rest of lines. 
-            if len(temp_compound_words) !=0:
+    # loop throw evry char in text
+    while counter < len(text):  
+         if(text[counter] != " ") :
+             counter2=counter
+             for index in compWord_indexes:
+                 
+                 if index[0]== counter:
+                    filtering_result.append((text[index[0]:index[1]], 1))
+                    counter+= len(text[index[0]:index[1]])
                     break
+             if counter2==counter:
+                 
+                 temp_words+=(text[counter]) #collect the character of evry word
+                 
+         else:
+             filtering_result.append((temp_words, 0))  
+             temp_words=""
+         counter+=1
+             
+             
+    if temp_words!="":
+        filtering_result.append((temp_words, 0)) 
         
-        # check if the temp_compound_words not empty then add full compound word in the 
-        # filtering_result list with 1 mark , else add the word in filtering_result list with '0' mark. 
-        if len(temp_compound_words) > 1:
-            if word_num == len(temp_compound_words):
-                # add compound words to filtering result
-                filtering_result.append((" ".join(temp_compound_words), 1))
-                temp_compound_words=[]
-            else: 
-                for not_compwords in temp_compound_words:
-                    print("وصل ولا لا ؟")
-                    filtering_result.append((not_compwords, 0))
-                    del delete_index[-1]
-                    
-                
-                
-                filtering_result.append((tokenized_text[counter], 0))
-                
-        # special case if word matched with part of compound word
-        elif len(temp_compound_words) == 1:
-            filtering_result.append((tokenized_text[counter-1], 0))
-            temp_compound_words=[]
-        else: 
-            # add non compound word to filtering result
-            filtering_result.append((tokenized_text[counter], 0))
-            counter+=1
-
-#------------------------------------------------------------------------------------------------------
-    
+    #--------------------------------------------------------------------------------------------------------------------    
+        
+    deleted_index_num = 0 
+    counter = 0
+    deleted_indexes_morph=[]
+    deleted_indexes_filter=[]
+    shift_index = 0
+    while counter < len(filtering_result):
+        
+        word = filtering_result[counter]
+        
+        if word[1] == 0:
+            
+            if word[0] in asma_mosola or word[0] in punctuation_marks:
+                print("delete this:", filtering_result[counter])
+                deleted_indexes_morph.append(counter)
+                deleted_indexes_filter.append(counter)
+     
+        else:
+            deleted_index_num = len(word[0].split())-1
+            for index in range(counter ,counter+deleted_index_num):
+                deleted_indexes_morph.append(index)
+        counter +=1
+        
+        
+        
+    #------------------------------------------------------------------------------------------------------
+   
     # each iteration delete the indexe that stored in "delete_index" list from "moropholgical_result" list.
     shift_index = 0
-    for index in delete_index:
+    for index in deleted_indexes_morph:
         del moropholgical_result[index - shift_index]
         shift_index += 1
-    
+        
+    shift_index = 0
+    for index in deleted_indexes_filter:
+        del filtering_result[index - shift_index]
+        shift_index += 1
+        
+    print(moropholgical_result) 
+    print(filtering_result)
     restructureText(filtering_result, moropholgical_result ,sock)
-    
-  
-    
   
     
 # function to restructure the text into ArSL structure based on some rules  
@@ -227,7 +209,8 @@ def restructureText(filtering_result, moropholgical_result ,sock):
             #check for the arabic letters
         elif features['pos']=='abbrev': 
             restructured_text.append((lemma,4))
-      
+        elif features['pos'] =='prep':
+            continue
             #any other type of pos
         else:
            restructured_text.append((lemma,0))
