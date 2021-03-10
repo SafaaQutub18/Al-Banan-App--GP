@@ -1,10 +1,10 @@
 import re
 
 
-text= "الخير السلام عليكم ورحمة الله وبركاته السلام عليكم كيف الحال كيف حالك روعة صباح الخير مندي الخير مساء"
-
+text= "الخير السلام عليكم ورحمة الله وبركاته وردة ذهبت الى ورحمة الله الخير صباح السلام عليكم ورحمة"
+moro = [1, 2, 3, 4, 5 , 6, 7 ,8 ,9 ,10 ,11 , 12, 13,14 ,15, 16]
 #def filteringText(text,tokenized_text,moropholgical_result,sock):
-def filteringText(text):
+def filteringText(text,moropholgical_result):
     
       # read the compound word file 
     compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
@@ -64,15 +64,31 @@ def filteringText(text):
         filtering_result.append((temp_words, 0)) 
         
         
-       
+        
+    deleted_index_num = 0 
+    counter = 0
+    while counter < len(filtering_result):
+        
+        if filtering_result[counter][1] == 0:
+            print(filtering_result[counter][0])
+            counter +=1
+            continue
+        else:
+            deleted_index_num = len(filtering_result[counter][0].split())-1
+            print(deleted_index_num)
+            shift_index = 0
+            for index in range(counter ,counter+deleted_index_num):
+                del moropholgical_result[index - shift_index]
+                shift_index += 1
+            counter +=1
         
         
         
        
         
-      
+    print(moropholgical_result) 
     print(filtering_result)    
         
         
         
-filteringText(text)
+filteringText(text, moro)
