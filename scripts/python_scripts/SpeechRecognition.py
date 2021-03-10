@@ -22,7 +22,3 @@ def convertSpeechToText():
         speech_recognizer.stop_continuous_recognition()
 
 convertSpeechToText()
-   
-
-    
-    

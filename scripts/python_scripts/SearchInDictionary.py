@@ -34,7 +34,7 @@ def checkText(restructured_text ,sock):
                 
               
         elif word[1] == 1: # check for compound words
-            
+            print("jdszgfvjdsfhkjsvhk")
             # search for compound words and return the compound words id
             df_compWord=compWord_file[compWord_file.compWord.eq(word[0])]
             compWord_id = df_compWord['compWord_id'].iloc[0]

@@ -83,10 +83,7 @@ def filteringText(tokenized_text,moropholgical_result,sock):
                        delete_index.append(counter)
                     counter+=1
                 counter2+=1
-            
-            # check if word_num equal the temp_compound_words 
-            if word_num == len(temp_compound_words):
-                break
+                
                 
             # after finishing each line check if there are compound word stored 
             # in temp_compound_words, to skip the rest of lines. 
@@ -96,19 +93,19 @@ def filteringText(tokenized_text,moropholgical_result,sock):
         # check if the temp_compound_words not empty then add full compound word in the 
         # filtering_result list with 1 mark , else add the word in filtering_result list with '0' mark. 
         if len(temp_compound_words) > 1:
-            
-            # special case for "السلام عليكم ورحمة الله وبركاته" compound word to make it equals to "السلام عليكم"
-            if " ".join(temp_compound_words) == "ورحمة الله وبركاته":
-                
-                # add index of "ورحمة" before the index of "الله وبركاته" to delete them, because index of "رحمة" not stored in line 69
-                delete_index.insert(len(delete_index)-2, counter-2)
-                temp_compound_words=[]
-                continue
-            
-            else:
+            if word_num == len(temp_compound_words):
                 # add compound words to filtering result
                 filtering_result.append((" ".join(temp_compound_words), 1))
                 temp_compound_words=[]
+            else: 
+                for not_compwords in temp_compound_words:
+                    print("وصل ولا لا ؟")
+                    filtering_result.append((not_compwords, 0))
+                    del delete_index[-1]
+                    
+                
+                
+                filtering_result.append((tokenized_text[counter], 0))
                 
         # special case if word matched with part of compound word
         elif len(temp_compound_words) == 1:
@@ -251,4 +248,3 @@ def restructureText(filtering_result, moropholgical_result ,sock):
     
     
     
-#filteringCopoundWord(['صفاء', 'السلام', 'عليكم','عشاء', 'ورحمة', 'الله', 'وبركاته', 'كيف حالك', 'نهنى', 'صباح', 'الخير', 'السلام', 'عليكم'])
