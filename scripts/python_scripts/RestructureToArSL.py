@@ -9,55 +9,46 @@ import re
 # parameter: the tokenized_text: which contains the list of word.
 #            the morphological_result: which contains the analyzed feature that extracted from the words.
 
-def filteringText(text,moropholgical_result,sock):
 
+# function to restructure the text into ArSL structure based on some rules  
+# parameter: the filtering_result: which contains the list of word after filtering.
+#            the morphological_result: which contains the analyzed feature that extracted from the words.
+   
+def restructureText(text_with_marks, moropholgical_result ,sock):
      
     
     # declare the  prepositions, relative pronouns, punctuation marks, numbers
    
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
-       
-    #--------------------------------------------------------------------------------------------------------------------    
-     
+            
     counter = 0
     deleted_indexes=[]
-    while counter < len(text):
-        word = text[counter]
+    while counter < len(text_with_marks):
+        word = text_with_marks[counter]
         if word[1] == 0:
-            
             if word[0] in asma_mosola:
-                print("delete this:", text[counter])
-                deleted_indexes.append(counter)
-     
+                print("delete this:", text_with_marks[counter])
+                deleted_indexes.append(counter) 
         
-        
-    #------------------------------------------------------------------------------------------------------
+    # *****************************************************
    
     # each iteration delete the indexe that stored in "delete_index" list from "moropholgical_result" list.
     shift_index = 0
     for index in deleted_indexes:
         del moropholgical_result[index - shift_index]
+        del text_with_marks[index - shift_index]
         shift_index += 1
         
     print(moropholgical_result) 
-    print(text)
-    restructureText(filtering_result, moropholgical_result ,sock)
-  
+    print(text_with_marks)
     
-# function to restructure the text into ArSL structure based on some rules  
-# parameter: the filtering_result: which contains the list of word after filtering.
-#            the morphological_result: which contains the analyzed feature that extracted from the words.
-     
-def restructureText(filtering_result, moropholgical_result ,sock):
-        
+#--------------------------------------------------------------------------------------------    
     counter=0
-    
-    # list of text after restructuring
+    # list of text_with_marks after restructuring
     restructured_text =[]
     
     # loop through all the words to produce final restructuring result
-    for word in filtering_result: 
-        
+    for word in text_with_marks: 
         # skip the compound words because there are no need to restructure them.
         if word[1]==1:
             restructured_text.append(word)

@@ -1,15 +1,15 @@
 
-from Moropholgical_Analyzer import tokenizeText
+from MoropholgicalAnalyzer import tokenizeText
 import re
 import unicodedata as ud
 
 
-def filteringText(text):
+def filteringText(text,sock):
     
      # read the compound word file 
     compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
     
-    punctuation_marks = ["." , ":" ,  "،", "؟"]
+    # delete punctuation_marks from the text
     text= ''.join(c for c in text if not ud.category(c).startswith('P'))
     print(text)
 
@@ -18,7 +18,8 @@ def filteringText(text):
    
     # text = " ".join(tokenized_text)
     # list of text after filtering
-    filtering_result = []  
+    text_with_marks = [] 
+    text_without_marks = [] 
    
     # loop through the lines of file   
     for line in compound_words_file :
@@ -33,8 +34,6 @@ def filteringText(text):
     temp_words=""
     # counter of while loop 
     counter = 0
-    
-    
    # counter of for loop 
     counter2 = 0
     
@@ -45,21 +44,23 @@ def filteringText(text):
              for index in compWord_indexes:
                  
                  if index[0]== counter:
-                    filtering_result.append((text[index[0]:index[1]], 1))
+                    text_with_marks.append(text[index[0]:index[1]], 1)
+                    text_without_marks.append(text[index[0]:index[1]])
                     counter+= len(text[index[0]:index[1]])
                     break
              if counter2==counter:
                  temp_words+=(text[counter]) #collect the character of evry word
          else:
-             filtering_result.append((temp_words, 0))  
+             text_with_marks.append(temp_words, 0)
+             text_without_marks.append(temp_words)
              temp_words=""
-         counter+=1
-             
+         counter+=1        
              
     if temp_words!="":
-        filtering_result.append((temp_words, 0)) 
+        text_with_marks.append((temp_words, 0)) 
+        text_without_marks.append(temp_words)
     
+    print(text_with_marks)
+    print(text_without_marks)
+    tokenizeText(text_without_marks, text_with_marks,sock)
         
-    print(filtering_result)
-        
-filteringText("صلى الله عليه وسلم. ؟،")

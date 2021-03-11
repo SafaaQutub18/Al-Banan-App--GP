@@ -1,13 +1,12 @@
 
-from RestructureToArSL import filteringText
+from RestructureToArSL import restructureText
 from camel_tools.disambig.mle import MLEDisambiguator
 from camel_tools.tokenizers.word import simple_word_tokenize
 
 
 # function for tokenize text to word 
 # parameter: text that received from speech 
-def  tokenizeText(text ,sock):
-    print(text)
+def  tokenizeText(text,text_with_marks ,sock):
 
     tokenized_text= simple_word_tokenize(text)
     
@@ -15,7 +14,7 @@ def  tokenizeText(text ,sock):
     
 # fuction for extract morphological features for each word
 # parameter: tokenized_text 
-def extractMorphologicalFeatures(tokenized_text,sock):
+def extractMorphologicalFeatures(text_with_marks,tokenized_text,sock):
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
     mle = MLEDisambiguator.pretrained()
     
@@ -28,7 +27,7 @@ def extractMorphologicalFeatures(tokenized_text,sock):
     
    
     
-    filteringText(tokenized_text,moropholgical_result,sock)
+    restructureText(text_with_marks,moropholgical_result,sock)
     
 
 
