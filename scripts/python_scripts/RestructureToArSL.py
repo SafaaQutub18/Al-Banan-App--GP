@@ -16,7 +16,7 @@ import re
    
 def restructureText(text_with_marks, moropholgical_result ,sock):
      
-    
+    print("0000000000000000000000000000000000000000000000000000000000000000000000000000")
     # declare the  prepositions, relative pronouns, punctuation marks, numbers
    
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
@@ -29,6 +29,7 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
             if word[0] in asma_mosola:
                 print("delete this:", text_with_marks[counter])
                 deleted_indexes.append(counter) 
+        counter += 1        
         
     # *****************************************************
    
@@ -39,7 +40,7 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
         del text_with_marks[index - shift_index]
         shift_index += 1
         
-    print(moropholgical_result) 
+    
     print(text_with_marks)
     
 #--------------------------------------------------------------------------------------------    
@@ -68,7 +69,7 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
         # check if the POS equals noun or adjectiv or demonstrative pronoun to add appropriate word depend on the features and cases  
         if  features['pos']== 'noun' or features['pos']== 'adj' or features['pos']== 'pron_dem':
             if features['num']== 's': # s= singular
-                 if features['gen']== 'f' and lemma != word[0] and features['rat']=='r' or features['rat']=='y': # r,y = rational
+                 if features['gen']== 'f' and lemma != word[0] and( features['rat']=='r' or features['rat']=='y'): # r,y = rational
                         restructured_text.append((lemma,0))
                         restructured_text.append(("أنثى",0))
                         
@@ -89,11 +90,11 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
                       
                 else:  # else if gen = male
                     restructured_text.append((lemma,0))
-                    restructured_text.append(("2",2))
+                    restructured_text.append(("2",3))
             # ********************************************************
 
             elif features['num']== 'p': # p = plural
-                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and features['rat']=='r' or features['rat']=='y':  # r,y = rational
+                if features['gen']== 'f' and re.search( 'ة', lemma ) == None and (features['rat']=='r' or features['rat']=='y'):  # r,y = rational
                   restructured_text.append((lemma,0))
                   restructured_text.append(("كثير",0))
                   restructured_text.append(("أنثى",0))

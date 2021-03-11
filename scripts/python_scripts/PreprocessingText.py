@@ -45,7 +45,7 @@ def filteringText(text,sock):
                  
                  if index[0] == counter:
                     text_with_marks.append((text[index[0]:index[1]], 1))
-                    text_without_marks.append(text[index[0]:index[1]])
+                    text_without_marks.append(text[index[0]])
                     counter+= len(text[index[0]:index[1]])
                     break
              if counter2==counter:
@@ -60,7 +60,5 @@ def filteringText(text,sock):
         text_with_marks.append((temp_words, 0)) 
         text_without_marks.append(temp_words)
     
-    print(text_with_marks)
-    print(text_without_marks)
     extractMorphologicalFeatures(text_without_marks, text_with_marks,sock)
         

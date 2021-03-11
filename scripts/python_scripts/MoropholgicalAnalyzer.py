@@ -1,7 +1,7 @@
 
 from RestructureToArSL import restructureText
 from camel_tools.disambig.mle import MLEDisambiguator
-from camel_tools.tokenizers.word import simple_word_tokenize
+#from camel_tools.tokenizers.word import simple_word_tokenize
 
 
 # function for tokenize text to word 
@@ -16,7 +16,7 @@ from camel_tools.tokenizers.word import simple_word_tokenize
 # parameter: tokenized_text 
 def extractMorphologicalFeatures(text,text_with_marks,sock):
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
-    print("------------------------------------------------------------")
+    
     mle = MLEDisambiguator.pretrained()
     
     # diacritize all words of sentence.
