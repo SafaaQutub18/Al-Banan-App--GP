@@ -14,7 +14,7 @@ from camel_tools.disambig.mle import MLEDisambiguator
     
 # fuction for extract morphological features for each word
 # parameter: tokenized_text 
-def extractMorphologicalFeatures(text,text_with_marks,sock):
+def extractMorphFeatures(text,text_with_marks,sock):
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
     
     mle = MLEDisambiguator.pretrained()
