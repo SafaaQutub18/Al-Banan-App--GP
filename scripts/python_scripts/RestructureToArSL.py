@@ -9,106 +9,38 @@ import re
 # parameter: the tokenized_text: which contains the list of word.
 #            the morphological_result: which contains the analyzed feature that extracted from the words.
 
-def filteringText(text,tokenized_text,moropholgical_result,sock):
+def filteringText(text,moropholgical_result,sock):
 
-      # read the compound word file 
-    compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
+     
     
     # declare the  prepositions, relative pronouns, punctuation marks, numbers
    
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
-    punctuation_marks = ["." , ":" ,  "،", "؟"]
-   
-    
-    # list for the indexes of compword
-    compWord_indexes=[]
-   
-    text = " ".join(tokenized_text)
-    # list of text after filtering
-    filtering_result = []  
-   
-    # loop through the lines of file   
-    for line in compound_words_file :
-        # loop to search on the compound words in text and store the start and end indexes
-        for m in re.finditer(line.strip() , text):
-            if line.strip()=='': # break if arrive to end of lines
-                break
-            compWord_indexes.append(m.span()) # store the start-end indexes of compWord
-    
-    
-   # A temporary variable inside the loop to collect the character of the word
-    temp_words=""
-    # counter of while loop 
-    counter = 0
-    
-    
-   # counter of for loop 
-    counter2 = 0
-    
-    # loop throw evry char in text
-    while counter < len(text):  
-         if(text[counter] != " ") :
-             counter2=counter
-             for index in compWord_indexes:
-                 
-                 if index[0]== counter:
-                    filtering_result.append((text[index[0]:index[1]], 1))
-                    counter+= len(text[index[0]:index[1]])
-                    break
-             if counter2==counter:
-                 
-                 temp_words+=(text[counter]) #collect the character of evry word
-                 
-         else:
-             filtering_result.append((temp_words, 0))  
-             temp_words=""
-         counter+=1
-             
-             
-    if temp_words!="":
-        filtering_result.append((temp_words, 0)) 
-        
+       
     #--------------------------------------------------------------------------------------------------------------------    
-        
-    deleted_index_num = 0 
+     
     counter = 0
-    deleted_indexes_morph=[]
-    deleted_indexes_filter=[]
-    shift_index = 0
-    while counter < len(filtering_result):
-        
-        word = filtering_result[counter]
-        
+    deleted_indexes=[]
+    while counter < len(text):
+        word = text[counter]
         if word[1] == 0:
             
-            if word[0] in asma_mosola or word[0] in punctuation_marks:
-                print("delete this:", filtering_result[counter])
-                deleted_indexes_morph.append(counter)
-                deleted_indexes_filter.append(counter)
+            if word[0] in asma_mosola:
+                print("delete this:", text[counter])
+                deleted_indexes.append(counter)
      
-        else:
-            deleted_index_num = len(word[0].split())-1
-            for index in range(counter ,counter+deleted_index_num):
-                deleted_indexes_morph.append(index)
-        counter +=1
-        
         
         
     #------------------------------------------------------------------------------------------------------
    
     # each iteration delete the indexe that stored in "delete_index" list from "moropholgical_result" list.
     shift_index = 0
-    for index in deleted_indexes_morph:
+    for index in deleted_indexes:
         del moropholgical_result[index - shift_index]
         shift_index += 1
         
-    shift_index = 0
-    for index in deleted_indexes_filter:
-        del filtering_result[index - shift_index]
-        shift_index += 1
-        
     print(moropholgical_result) 
-    print(filtering_result)
+    print(text)
     restructureText(filtering_result, moropholgical_result ,sock)
   
     
@@ -210,15 +142,14 @@ def restructureText(filtering_result, moropholgical_result ,sock):
         elif features['pos']=='abbrev': 
             restructured_text.append((lemma,4))
         elif features['pos'] =='prep':
+            counter+=1
             continue
             #any other type of pos
         else:
            restructured_text.append((lemma,0))
         counter+=1
-                
-                           
-                
-  
+
+    
     print(restructured_text)
     
     checkText(restructured_text ,sock)
