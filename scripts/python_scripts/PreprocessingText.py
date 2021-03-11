@@ -1,5 +1,5 @@
 
-from MoropholgicalAnalyzer import tokenizeText
+from MoropholgicalAnalyzer import extractMorphologicalFeatures
 import re
 import unicodedata as ud
 
@@ -43,15 +43,15 @@ def filteringText(text,sock):
              counter2=counter
              for index in compWord_indexes:
                  
-                 if index[0]== counter:
-                    text_with_marks.append(text[index[0]:index[1]], 1)
+                 if index[0] == counter:
+                    text_with_marks.append((text[index[0]:index[1]], 1))
                     text_without_marks.append(text[index[0]:index[1]])
                     counter+= len(text[index[0]:index[1]])
                     break
              if counter2==counter:
                  temp_words+=(text[counter]) #collect the character of evry word
          else:
-             text_with_marks.append(temp_words, 0)
+             text_with_marks.append((temp_words, 0))
              text_without_marks.append(temp_words)
              temp_words=""
          counter+=1        
@@ -62,5 +62,5 @@ def filteringText(text,sock):
     
     print(text_with_marks)
     print(text_without_marks)
-    tokenizeText(text_without_marks, text_with_marks,sock)
+    extractMorphologicalFeatures(text_without_marks, text_with_marks,sock)
         
