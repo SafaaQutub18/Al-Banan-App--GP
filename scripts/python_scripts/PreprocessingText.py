@@ -20,49 +20,67 @@ def filteringText(text,sock):
    
     # list of text after put a mark of compound word
     text_with_marks = [] 
-<<<<<<< HEAD
-    
+
     # tokanized text to word 
-    text_without_marks = [] 
-=======
     text = [] 
->>>>>>> 393230048af6ccb147111cd1d8c60a4a4ffafe1f
-   
+
     # loop through the lines of file   
     for line in compound_words_file :
-        # loop to search on the compound words in text and store the start and end indexes
+        
+        # loop to search the compound words in text and store the start and end indexes
         for m in re.finditer(line.strip() , text):
             if line.strip()=='': # break if arrive to end of lines
                 break
             compWord_indexes.append(m.span()) # store the start-end indexes of compWord
+            
+# ******************************************************************************************
     
-    
-   # A temporary variable inside the loop to collect the character of the word
+    # A temporary variable inside the loop to collect the character of the word
     temp_words=""
+    
     # counter of while loop 
     counter = 0
-   # counter of for loop 
-    counter2 = 0
     
-    # loop throw evry char in text
-    while counter < len(text):  
+    # counter of for loop 
+    temp_counter = 0
+     
+    # loop through every char in text
+    while counter < len(text): 
+        
+        # check if the text not space 
          if text[counter] != " ":
-             counter2=counter
+             
+             # store the counter temporary 
+             temp_counter=counter
+             
+             # loop through indexes of compound words
              for index in compWord_indexes:
                  
+                 # check if the first index of compound word equal counter to put mark as compound word
                  if index[0] == counter:
+                    
+                    # add the compound word to text_with_marks list with 1 number as mark 
                     text_with_marks.append((text[index[0]:index[1]], 1))
+                    
+                    # add the compound word to text list 
                     text.append(text[index[0]])
+                    
+                    # increase counter to skip the ompound word
                     counter+= len(text[index[0]:index[1]])
                     break
-             if counter2==counter:
-                 temp_words+=(text[counter]) #collect the character of evry word
+             # check if there are no change to counter after exist from the loop, that means is not find compound word  
+             if temp_counter==counter:
+                temp_words+=(text[counter]) #collect the characters of every word
          else:
+             # add the word to text_with_marks list with 0 number as mark
              text_with_marks.append((temp_words, 0))
+             
+             # add the word to text list
              text.append(temp_words)
              temp_words=""
-         counter+=1        
-             
+         counter+=1      
+         
+    # add last word of text because while loop end befor the add last word of text        
     if temp_words!="":
         text_with_marks.append((temp_words, 0)) 
         text.append(temp_words)
