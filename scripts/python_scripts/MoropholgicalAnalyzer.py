@@ -6,6 +6,7 @@ from camel_tools.disambig.mle import MLEDisambiguator
 # fuction for extract morphological features for each word
 # parameter: text, text_with_marks
 def extractMorphFeatures(text,text_with_marks,sock):
+    print("999999999999999999999999999999999999999999999999999")
 
     # Load a pre-trained Maximum Likelihood Estimation model (MLE) disambiguator provided with CAMeL Tools.
     mle = MLEDisambiguator.pretrained()

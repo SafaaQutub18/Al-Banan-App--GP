@@ -1,55 +1,52 @@
 from SearchInDictionary import checkText
 import re
 
-# filtering the text as follows: 
-# 1- Delete the extra word that have no signs in ArSL such as: prepositions, relative pronouns, punctuation marks
-# 2- Converting written numbers in text to digits
-# 3- put a mark of compound word that have on sign in ArSL and collect them in one index
-
-# parameter: the tokenized_text: which contains the list of word.
-#            the morphological_result: which contains the analyzed feature that extracted from the words.
-
 
 # function to restructure the text into ArSL structure based on some rules  
-# parameter: the filtering_result: which contains the list of word after filtering.
-#            the morphological_result: which contains the analyzed feature that extracted from the words.
-   
+# parameter: the text_with_marks: which contains the list of words with there marks after filtering.
+#            the morphological_result: which contains the analyzed feature that extracted from the words. 
 def restructureText(text_with_marks, moropholgical_result ,sock):
      
-    print("0000000000000000000000000000000000000000000000000000000000000000000000000000")
-    # declare the  prepositions, relative pronouns, punctuation marks, numbers
-   
+    print("--------------------------------------------------------")
+    
+    # declare the relative pronouns list to delete them.
     asma_mosola = ["الذي" , "التي" , "اللذان" , "اللتان" , "الذين" , "اللتان" ,  "اللاتي" ,  "اللواتي" ,  "اللائي"]
-            
+    
     counter = 0
+    
+    # list for collect the indexes of words that should be deleted from the text_with_marks list and moropholgical_result list
     deleted_indexes=[]
+    
+    # loop through every words in text_with_marks list
     while counter < len(text_with_marks):
         word = text_with_marks[counter]
+        
+        # check if the word not compound words
         if word[1] == 0:
             if word[0] in asma_mosola:
-                print("delete this:", text_with_marks[counter])
-                deleted_indexes.append(counter) 
+                deleted_indexes.append(counter) # add the index of word to delete it, if it is one of asma_mosola list
         counter += 1        
         
     # *****************************************************
    
-    # each iteration delete the indexe that stored in "delete_index" list from "moropholgical_result" list.
+    # each iteration delete the indexe that stored in "delete_index" list from "moropholgical_result" list and "text_with_marks" list.
     shift_index = 0
     for index in deleted_indexes:
         del moropholgical_result[index - shift_index]
         del text_with_marks[index - shift_index]
         shift_index += 1
-        
     
-    print(text_with_marks)
     
 #--------------------------------------------------------------------------------------------    
+   
+   
     counter=0
     # list of text_with_marks after restructuring
     restructured_text =[]
     
     # loop through all the words to produce final restructuring result
     for word in text_with_marks: 
+        
         # skip the compound words because there are no need to restructure them.
         if word[1]==1:
             restructured_text.append(word)
@@ -71,34 +68,28 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
             if features['num']== 's': # s= singular
                  if features['gen']== 'f' and lemma != word[0] and( features['rat']=='r' or features['rat']=='y'): # r,y = rational
                         restructured_text.append((lemma,0))
-                        restructured_text.append(("أنثى",0))
-                        
+                        restructured_text.append(("أنثى",0))         
                  else: # else if gen = male
                       restructured_text.append((lemma,0))
-
     
-   # ********************************************************
+            # ********************************************************
 
             elif features['num']== 'd': # d= dual
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and (features['rat']=='r' or features['rat']=='y'): # r,y = rational , ex. the word "شمس" is female but not rational
-                      
-
                       restructured_text.append((lemma,0))
                       restructured_text.append(("2",3))
-                      restructured_text.append(("أنثى",0))
-
-                      
+                      restructured_text.append(("أنثى",0))   
                 else:  # else if gen = male
                     restructured_text.append((lemma,0))
                     restructured_text.append(("2",3))
+                    
             # ********************************************************
 
             elif features['num']== 'p': # p = plural
                 if features['gen']== 'f' and re.search( 'ة', lemma ) == None and (features['rat']=='r' or features['rat']=='y'):  # r,y = rational
                   restructured_text.append((lemma,0))
                   restructured_text.append(("كثير",0))
-                  restructured_text.append(("أنثى",0))
-                  
+                  restructured_text.append(("أنثى",0))  
                 else:  # else if gen = male
                     restructured_text.append((lemma,0))
                     restructured_text.append(("كثير",0))
@@ -133,24 +124,20 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
             #check for the arabic letters
         elif features['pos']=='abbrev': 
             restructured_text.append((lemma,4))
+            
+        #check for the prep
         elif features['pos'] =='prep':
             counter+=1
-            continue
-            #any other type of pos
-        else:
+            continue # skip it because there is no corresping sign in ArSL.
+           
+        else: #any other type of pos
            restructured_text.append((lemma,0))
+           
         counter+=1
 
     
     print(restructured_text)
     
+    # call "checkText" function to search the words in dictionary
     checkText(restructured_text ,sock)
 
- 
-
-
-
-            
-    
-    
-    

@@ -22,16 +22,19 @@ def filteringText(text,sock):
     text_with_marks = [] 
 
     # tokanized text to word 
-    text = [] 
+    text_list = [] 
 
+    
     # loop through the lines of file   
     for line in compound_words_file :
         
         # loop to search the compound words in text and store the start and end indexes
         for m in re.finditer(line.strip() , text):
+            print("jhhugghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
             if line.strip()=='': # break if arrive to end of lines
                 break
             compWord_indexes.append(m.span()) # store the start-end indexes of compWord
+    print("ci",compWord_indexes)
             
 # ******************************************************************************************
     
@@ -63,7 +66,7 @@ def filteringText(text,sock):
                     text_with_marks.append((text[index[0]:index[1]], 1))
                     
                     # add the compound word to text list 
-                    text.append(text[index[0]])
+                    text_list.append(text[index[0]])
                     
                     # increase counter to skip the ompound word
                     counter+= len(text[index[0]:index[1]])
@@ -76,14 +79,15 @@ def filteringText(text,sock):
              text_with_marks.append((temp_words, 0))
              
              # add the word to text list
-             text.append(temp_words)
+             text_list.append(temp_words)
              temp_words=""
          counter+=1      
          
     # add last word of text because while loop end befor the add last word of text        
     if temp_words!="":
         text_with_marks.append((temp_words, 0)) 
-        text.append(temp_words)
-    
-    extractMorphFeatures(text, text_with_marks,sock)
+        text_list.append(temp_words)
+        
+    print(text_with_marks)
+    extractMorphFeatures(text_list,text_with_marks,sock)
         
