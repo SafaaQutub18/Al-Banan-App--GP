@@ -1,5 +1,5 @@
 
-from MoropholgicalAnalyzer import extractMorphologicalFeatures
+from MoropholgicalAnalyzer import extractMorphFeatures
 import re
 import unicodedata as ud
 
@@ -20,9 +20,13 @@ def filteringText(text,sock):
    
     # list of text after put a mark of compound word
     text_with_marks = [] 
+<<<<<<< HEAD
     
     # tokanized text to word 
     text_without_marks = [] 
+=======
+    text = [] 
+>>>>>>> 393230048af6ccb147111cd1d8c60a4a4ffafe1f
    
     # loop through the lines of file   
     for line in compound_words_file :
@@ -48,20 +52,20 @@ def filteringText(text,sock):
                  
                  if index[0] == counter:
                     text_with_marks.append((text[index[0]:index[1]], 1))
-                    text_without_marks.append(text[index[0]])
+                    text.append(text[index[0]])
                     counter+= len(text[index[0]:index[1]])
                     break
              if counter2==counter:
                  temp_words+=(text[counter]) #collect the character of evry word
          else:
              text_with_marks.append((temp_words, 0))
-             text_without_marks.append(temp_words)
+             text.append(temp_words)
              temp_words=""
          counter+=1        
              
     if temp_words!="":
         text_with_marks.append((temp_words, 0)) 
-        text_without_marks.append(temp_words)
+        text.append(temp_words)
     
-    extractMorphologicalFeatures(text_without_marks, text_with_marks,sock)
+    extractMorphFeatures(text, text_with_marks,sock)
         
