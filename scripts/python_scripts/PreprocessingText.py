@@ -3,10 +3,12 @@ from MoropholgicalAnalyzer import extractMorphologicalFeatures
 import re
 import unicodedata as ud
 
+# filteringText function  put a mark of compound word that have one sign in ArSL and collect them in one index to prevent any change on them
+# parameter text that received from speech 
 
 def filteringText(text,sock):
     
-     # read the compound word file 
+    # read the compound word file 
     compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
     
     # delete punctuation_marks from the text
@@ -16,9 +18,10 @@ def filteringText(text,sock):
     # list for the indexes of compword
     compWord_indexes=[]
    
-    # text = " ".join(tokenized_text)
-    # list of text after filtering
+    # list of text after put a mark of compound word
     text_with_marks = [] 
+    
+    # tokanized text to word 
     text_without_marks = [] 
    
     # loop through the lines of file   
