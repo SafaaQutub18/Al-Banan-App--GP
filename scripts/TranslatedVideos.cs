@@ -9,7 +9,11 @@ using System.Threading;
 public class TranslatedVideos : MonoBehaviour{   
 //Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-  //  string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"RockVR\Video");
+    //string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"RockVR\Video","");
+    string[] files = System.IO.Directory.GetFiles( "path" );
 
+    public void setSignId(int sign_id){  
+       print(files);
+    }    
 
 }

@@ -669,7 +669,6 @@ GameObject:
   - component: {fileID: 198459633}
   - component: {fileID: 198459632}
   - component: {fileID: 198459635}
-  - component: {fileID: 198459636}
   m_Layer: 5
   m_Name: TranslateButton
   m_TagString: Untagged
@@ -740,8 +739,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 198459636}
-        m_MethodName: onGUI
+      - m_Target: {fileID: 198459635}
+        m_MethodName: startStopListening
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -802,18 +801,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectionIP: 127.0.0.1
   connectionPort: 25001
---- !u!114 &198459636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198459630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08c95a3c35833400582e55ac76900c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &253395204
 GameObject:
   m_ObjectHideFlags: 0
