@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Threading;
 using System;
 
+
 public class VoiceListener : MonoBehaviour{
 
 
@@ -16,6 +17,7 @@ public class VoiceListener : MonoBehaviour{
     IPAddress localAdd;
     TcpListener listener;
     TcpClient client;
+    
 
     // varible to control the activation 
     string running = "false";
@@ -28,9 +30,11 @@ public class VoiceListener : MonoBehaviour{
         running = "false";
         listener.Stop();
         Debug.Log("Stop listener");
+       // VideoCaptureCtrl.Instance.StopCapture();
         } 
         // if the translation is not activated, start it
         else {
+        //VideoCaptureCtrl.Instance.StartCapture();
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
