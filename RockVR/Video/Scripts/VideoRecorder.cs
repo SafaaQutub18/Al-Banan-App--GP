@@ -11,7 +11,7 @@ using System;
 
 
 
-namespace RockVR.Video
+namespace RockVR.Video.Demo
 {
     public class VideoRecorder : MonoBehaviour
     {
@@ -25,11 +25,9 @@ namespace RockVR.Video
 
         public void Start_StopScreenRecord()
         {
-
             if(isRecord== true){
                 isRecord = false;
-                VideoCaptureCtrl.instance.StopCapture();
-                
+                VideoCaptureCtrl.instance.StopCapture();       
             }        
             else{
                 isRecord = true;
