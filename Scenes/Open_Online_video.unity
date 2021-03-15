@@ -714,7 +714,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -725,9 +725,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: ee535d41b40494a0eaf69b867d470486, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: ee535d41b40494a0eaf69b867d470486, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -799,6 +799,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafce8d6cf5974e41a7770fe78b251ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableListen: {fileID: 21300000, guid: ee535d41b40494a0eaf69b867d470486, type: 3}
+  disableListen: {fileID: 21300000, guid: 125bc7e62729142fea4066840de967ff, type: 3}
+  button: {fileID: 198459632}
   connectionIP: 127.0.0.1
   connectionPort: 25001
 --- !u!1 &253395204

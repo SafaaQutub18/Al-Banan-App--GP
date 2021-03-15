@@ -4,14 +4,17 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Threading;
 using System;
 
 
 public class VoiceListener : MonoBehaviour{
 
-
- Thread mThread;
+    public Sprite enableListen;
+    public Sprite disableListen;
+    public Button button;
+    Thread mThread;
     public string connectionIP = "127.0.0.1";
     public int connectionPort = 25001;
     IPAddress localAdd;
@@ -30,11 +33,13 @@ public class VoiceListener : MonoBehaviour{
         running = "false";
         listener.Stop();
         Debug.Log("Stop listener");
+        button.image.sprite = disableListen;
        // VideoCaptureCtrl.Instance.StopCapture();
         } 
         // if the translation is not activated, start it
         else {
         //VideoCaptureCtrl.Instance.StartCapture();
+        button.image.sprite = enableListen;
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
