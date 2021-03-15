@@ -1,22 +1,37 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.Animations;
-using System.Threading;
-using System.IO;
-using System;
 
-public class TranslatedVideos : MonoBehaviour{   
-//Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+public class TranslatedVideos : MonoBehaviour
+{
+	public GameObject prefab ; // This is our prefab object that will be exposed in the inspector
+	public int numberToCreate; // number of objects to create. Exposed in inspector
+    //GameObject rawImage;
+  //  public GameObject playIcon;
+//    private RenderTexture renderTexture;
 
-    string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),"RockVR/Video");
-    string[] files = System.IO.Directory.GetFiles( "path" );
-
-    public void displayVideos(){  
-       print(path);
-    }
-    
-        
+	void Start()
+	{  
+		Populate();
+	}
+	void Update()
+	{
+	}
+	void Populate()
+	{
+        numberToCreate= 10;
+		GameObject newObj ; // Create GameObject instance
+		for (int i = 0; i < numberToCreate; i++)
+		{
+			 // Create new instances of our prefab until we've created as many as we specified
+			newObj = (GameObject)Instantiate(prefab, transform);
+			
+			// Randomize the color of our image
+			newObj.GetComponent<RawImage>().color = Random.ColorHSV();
+             
+		}
+	}
 
 }
