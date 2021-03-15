@@ -989,8 +989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 245.48}
-  m_SizeDelta: {x: 70.49571, y: 66.700516}
+  m_AnchoredPosition: {x: -414.8, y: 246.66}
+  m_SizeDelta: {x: 53.407166, y: 53.973587}
   m_Pivot: {x: 0.49999985, y: 0.40756273}
 --- !u!114 &725100933
 MonoBehaviour:
@@ -1004,6 +1004,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c95a3c35833400582e55ac76900c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableRecord: {fileID: 21300000, guid: 6c8d02c7fc22e4742a1068adc9349a86, type: 3}
+  disableRecord: {fileID: 21300000, guid: 9517e33516525784f8c7165e931fccc2, type: 3}
+  button: {fileID: 725100934}
 --- !u!114 &725100934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,7 +1025,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1033,9 +1036,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 6c8d02c7fc22e4742a1068adc9349a86, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 6c8d02c7fc22e4742a1068adc9349a86, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1077,7 +1080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 125bc7e62729142fea4066840de967ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9517e33516525784f8c7165e931fccc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2568,6 +2571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c95a3c35833400582e55ac76900c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableRecord: {fileID: 0}
+  disableRecord: {fileID: 0}
+  button: {fileID: 0}
 --- !u!114 &2083591543
 MonoBehaviour:
   m_ObjectHideFlags: 0
