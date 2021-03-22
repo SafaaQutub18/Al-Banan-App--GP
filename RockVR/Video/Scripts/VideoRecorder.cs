@@ -16,18 +16,21 @@ namespace RockVR.Video.Demo
 {
     public class VideoRecorder : MonoBehaviour
     {
+        // turn-off or turn-on the recorder
+        private bool isRecord;
+
+        // variable for recorder tool
         public Sprite enableRecord;
         public Sprite disableRecord;
         public Button button;
         
-        private bool isRecord;
         private void Awake()
         {
             Application.runInBackground = true;
             isRecord = false;
         }
 
-        public void Start_StopScreenRecord()
+        public void startScreenRecord()
         {
             if(isRecord== true){
                 isRecord = false;
@@ -35,14 +38,14 @@ namespace RockVR.Video.Demo
                 button.image.sprite = disableRecord;      
             }        
             else{
-                isRecord = true;
-                VideoCaptureCtrl.instance.StartCapture();
-                button.image.sprite = enableRecord;
-               
+                stopRecordAndSave();
             }
-            
-                    
-             
-    }
+        }
+         public void stopRecordAndSave()
+        {
+            isRecord = true;
+            VideoCaptureCtrl.instance.StartCapture();
+            button.image.sprite = enableRecord;
+        }
 }
 }
