@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: 020775f3f265e2f4390787b2add11cc7
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 4984424937777981940
+    second: "RIG-Vincent|\uFE8E\uFECB\uFEA9"
+  - first:
+      74: -4961143249979472110
+    second: "RIG-Vincent|\uFE94\uFED3\uFEAE\uFECC\uFEE3"
+  - first:
+      74: -8109042241728100717
+    second: "RIG-Vincent|\uFE94\uFEE8\uFE9F"
+  - first:
+      74: 8840792230348537330
+    second: "RIG-Vincent|\uFE9A\uFEEC\uFEDF"
+  - first:
+      74: -8564275306652576454
+    second: "RIG-Vincent|\uFEA1\uFEED\uFEAD"
+  - first:
+      74: -264800607758302735
+    second: "RIG-Vincent|\uFEAA\uFEA3\uFE8D"
+  - first:
+      74: -5799157405590500013
+    second: "RIG-Vincent|\uFEAA\uFEA3\uFE8D \uFEE1\uFEEE\uFEF3"
+  - first:
+      74: 1834433480831154493
+    second: "RIG-Vincent|\uFEAA\uFEF4\uFEEC\uFEB7"
+  - first:
+      74: -7817357909621361183
+    second: "RIG-Vincent|\uFEAE\uFEB8\uFE92\uFEE3"
+  - first:
+      74: 5137329744014240300
+    second: "RIG-Vincent|\uFEAE\uFEDC\uFE91 \uFEEE\uFE91\uFE8D"
+  - first:
+      74: 7962662812307801631
+    second: "RIG-Vincent|\uFEAE\uFEF4\uFEA7"
+  - first:
+      74: -5645213870598449103
+    second: "RIG-Vincent|\uFEBE\uFEDB\uFEAD"
+  - first:
+      74: 8397056326253228832
+    second: "RIG-Vincent|\uFED5\uFEA9\uFE8E\uFEBB"
+  - first:
+      74: -1397026122059478736
+    second: "RIG-Vincent|\uFED6\uFED3\uFE8D\uFEAD"
+  - first:
+      74: 2375251649892581259
+    second: "RIG-Vincent|\uFED6\uFEF3\uFEAA\uFEBB"
+  - first:
+      74: 747088651117890202
+    second: "RIG-Vincent|\uFEDD\uFEEE\uFEA4\uFE97"
+  - first:
+      74: 3337124527822867265
+    second: "RIG-Vincent|\uFEDE\uFE92\uFED7"
+  - first:
+      74: 8466654319484314364
+    second: "RIG-Vincent|\uFEDE\uFE9C\uFEE3"
+  - first:
+      74: -6256336997069879033
+    second: "RIG-Vincent|\uFEDE\uFECC\uFE9F"
+  - first:
+      74: 891807987423065153
+    second: "RIG-Vincent|\uFEE2\uFEDF"
+  - first:
+      74: -7646192126412609731
+    second: "RIG-Vincent|\uFEEA\uFEE0\uFEDF\uFE8D"
+  - first:
+      74: -5754469114780509400
+    second: "RIG-Vincent|\uFEEA\uFEE8\uFECB"
+  - first:
+      74: 2559794165198293960
+    second: "RIG-Vincent|\uFEEA\uFEE8\uFECB \uFEEA\uFEE0\uFEDF\uFE8D \uFEF2\uFEBF\uFEAD"
+  - first:
+      74: -1420845159156879400
+    second: "RIG-Vincent|\uFEF0\uFED0\uFE92\uFEE7\uFE81"
+  - first:
+      74: -4322021799560598728
+    second: "RIG-Vincent|\uFEF0\uFEE4\uFEB3"
+  - first:
+      74: -2802812721720628950
+    second: "RIG-Vincent|\uFEF2\uFE91\uFE8E\uFEA4\uFEBB"
+  - first:
+      74: -8281948922205059749
+    second: "RIG-Vincent|\uFEF2\uFE91\uFEAE\uFECB"
+  - first:
+      74: -2046399611404176
+    second: "RIG-Vincent|\uFEF2\uFEBF\uFEAD"
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
