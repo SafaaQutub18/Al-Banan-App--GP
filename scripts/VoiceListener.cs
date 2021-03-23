@@ -28,17 +28,29 @@ public class VoiceListener : MonoBehaviour{
 
     // varible to control the activation 
     string running = "false";
+    private GameObject translate_error;
+    private GameObject translate_button;
+    private GameObject translate_button_text;
+
 
 
     //function activated by the user to start or stop the translation
     public void startStopListening()
     {   
+        translate_button = GameObject.Find("TranslateButton");
+        translate_button_text = translate_button.transform.Find("TranslateText").gameObject;
+
         //check if the translation is activated to stop it.
         if(running.Equals("true")) {
         running = "false";
 
         //send the running value to unity
 		text_running.GetComponent<Text>().text ="false";
+
+        translate_error = GameObject.Find("translate_error massage");
+        translate_error.GetComponent<Text>().text =""; 
+
+        translate_button_text.GetComponent<Text>().text ="ﺔﻤﺟﺮﺘﻟﺍ ﺀﺪﺑ";
 
         listener.Stop();
         Debug.Log("Stop listener");
@@ -48,6 +60,10 @@ public class VoiceListener : MonoBehaviour{
         // if the translation is not activated, start it
         else {
         //VideoCaptureCtrl.Instance.StartCapture();
+
+        
+        translate_button_text.GetComponent<Text>().text ="ﺔﻤﺟﺮﺘﻟﺍ ﻑﺎﻘﻳﺇ";
+
         button.image.sprite = enableListen;
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
