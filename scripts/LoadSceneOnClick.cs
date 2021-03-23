@@ -11,32 +11,38 @@ using System;
 public class LoadSceneOnClick  : MonoBehaviour {
 
     //public GameObject translation_bt;
-    public GameObject text_running;
-    private GameObject translate_error;
+    private GameObject text_isListening;
+    private GameObject text_isRecord;
+    private GameObject error_massage;
 
 
-void Start()
-	{  
-		//StartCoroutine(displayTranslatedVideos());
-}
-    public void LoadScene(string sceneName)
-    {
+void Start(){ 
+    // bring the values from unity to deal with exeptions
+    text_isListening= GameObject.Find("isListening_text");
+    text_isRecord= GameObject.Find("isRecord_Text");
+    error_massage = GameObject.Find("error_massage");
+    }
 
-    text_running= GameObject.Find("running_translate_text");
-    translate_error = GameObject.Find("translate_error massage");
-    Debug.Log(text_running.GetComponent<Text>().text);
-    if(text_running.GetComponent<Text>().text == "false" ){
+    public void LoadScene(string sceneName){
+    
+    //transfer to other scene 
+    if(text_isListening.GetComponent<Text>().text == "false" && text_isRecord.GetComponent<Text>().text == "false" ){
+        //error_massage.GetComponent<Text>().text ="ًﻻﻭﺃ ﻞﻴﺠﺴﺘﻟﺍ ﻑﺎﻘﻳﺇ ﺭﺯ ﺮﻘﻧﺃ";
         SceneManager.LoadScene(sceneName);
-        }
+     }
 
-    if (text_running.GetComponent<Text>().text == "true")
+    //check if listening is activated and print error massage
+    if (text_isListening.GetComponent<Text>().text == "true")
         //أنقر زر إيقاف الترجمة أولا
-        translate_error.GetComponent<Text>().text ="ﻻﻭﺃ ﺔﻤﺟﺮﺘﻟﺍ ﻑﺎﻘﻳﺇ ﺭﺯ ﺮﻘﻧﺃ"; 
+        error_massage.GetComponent<Text>().text ="ﻻﻭﺃ ﺔﻤﺟﺮﺘﻟﺍ ﻑﺎﻘﻳﺇ ﺭﺯ ﺮﻘﻧﺃ"; 
 
-//if (text_running.text == "true")
-  //  translate_error.GetComponent<Text>().text ="أنقر زر إيقاف الترجمة أولا";
-
+    if (text_isRecord.GetComponent<Text>().text == "true")
+        error_massage.GetComponent<Text>().text ="ًﻻﻭﺃ ﻞﻴﺠﺴﺘﻟﺍ ﻑﺎﻘﻳﺇ ﺭﺯ ﺮﻘﻧﺃ";
         
     }
+
+     public void LoadScene_general(string sceneName){
+        SceneManager.LoadScene(sceneName);
+     }
 
 }

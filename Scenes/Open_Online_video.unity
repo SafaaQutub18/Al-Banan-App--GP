@@ -344,7 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_running: {fileID: 0}
 --- !u!1 &129218310
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_running: {fileID: 0}
 --- !u!1 &163823035
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +499,7 @@ GameObject:
   - component: {fileID: 163823038}
   - component: {fileID: 163823037}
   m_Layer: 5
-  m_Name: Text
+  m_Name: isRecord_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,15 +514,15 @@ RectTransform:
   m_GameObject: {fileID: 163823035}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99978, y: 0.99978, z: 0.99978}
   m_Children: []
-  m_Father: {fileID: 725100932}
-  m_RootOrder: 0
+  m_Father: {fileID: 1273779212}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -255.19995, y: 185.9}
+  m_SizeDelta: {x: -943.64465, y: -516.0264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163823037
 MonoBehaviour:
@@ -539,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.97187614, b: 0.97187614, a: 1}
+  m_Color: {r: 0.1981132, g: 0.06354574, b: 0.06354574, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -558,9 +556,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: false
 --- !u!222 &163823038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -619,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 4212841714546020072, guid: a47e37aacf2186949a4ed54dd2c479c6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 89.44
+      value: 88.67
       objectReference: {fileID: 0}
     - target: {fileID: 4212841714546020072, guid: a47e37aacf2186949a4ed54dd2c479c6,
         type: 3}
@@ -691,7 +687,7 @@ RectTransform:
   m_Children:
   - {fileID: 893017343}
   m_Father: {fileID: 1273779212}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -804,7 +800,6 @@ MonoBehaviour:
   enableListen: {fileID: 21300000, guid: ee535d41b40494a0eaf69b867d470486, type: 3}
   disableListen: {fileID: 21300000, guid: 125bc7e62729142fea4066840de967ff, type: 3}
   button: {fileID: 198459632}
-  text_running: {fileID: 904267349}
   connectionIP: 127.0.0.1
   connectionPort: 25001
 --- !u!1 &253395204
@@ -985,7 +980,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 725100932}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1047,7 +1042,7 @@ GameObject:
   - component: {fileID: 725100934}
   - component: {fileID: 725100933}
   m_Layer: 5
-  m_Name: RecordScreen_bt
+  m_Name: RecordButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1064,10 +1059,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99978, y: 0.99978, z: 0.99978}
   m_Children:
-  - {fileID: 163823036}
   - {fileID: 702346445}
   m_Father: {fileID: 1273779212}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1494,7 +1488,7 @@ GameObject:
   - component: {fileID: 904267352}
   - component: {fileID: 904267351}
   m_Layer: 5
-  m_Name: running_translate_text
+  m_Name: isListening_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1506,7 @@ RectTransform:
   m_LocalScale: {x: 0.99978, y: 0.99978, z: 0.99978}
   m_Children: []
   m_Father: {fileID: 1273779212}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1790,7 +1784,7 @@ GameObject:
   - component: {fileID: 952541378}
   - component: {fileID: 952541377}
   m_Layer: 5
-  m_Name: translate_error massage
+  m_Name: error_massage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1808,12 +1802,12 @@ RectTransform:
   m_LocalScale: {x: 0.99978, y: 0.99978, z: 0.99978}
   m_Children: []
   m_Father: {fileID: 1273779212}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350.2, y: 180.4}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -356, y: 184.3}
+  m_SizeDelta: {x: 216.00024, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &952541377
 MonoBehaviour:
@@ -1828,15 +1822,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9528302, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5943396, g: 0.028034883, b: 0.028034883, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: de474a3ed70f0794082c3b56e1d9be85, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -2123,10 +2117,11 @@ RectTransform:
   - {fileID: 224000013935859793}
   - {fileID: 950167601}
   - {fileID: 20293861}
-  - {fileID: 904267350}
-  - {fileID: 952541376}
   - {fileID: 198459631}
+  - {fileID: 904267350}
   - {fileID: 725100932}
+  - {fileID: 163823036}
+  - {fileID: 952541376}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2544,7 +2539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b638f509891e5444f82f338b76054b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text_running: {fileID: 0}
 --- !u!1 &2016340058
 GameObject:
   m_ObjectHideFlags: 0

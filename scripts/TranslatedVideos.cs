@@ -33,22 +33,23 @@ static string[] files = System.IO.Directory.GetFiles( path );
   IEnumerator displayTranslatedVideos()
 	{
         numberToCreate= files.Length;
-		GameObject newObj ; // Create GameObject instance
+		GameObject video_texture ; // Create GameObject instance
+		
 		for (int i = 0; i < numberToCreate; i++)
 		{			
             renderTexture = new RenderTexture(160, 100, 24);
 			videoPlayer = gameObject.AddComponent<VideoPlayer>();
 
 			 // Create new instances of our prefab until we've created as many as we specified
-			newObj = (GameObject)Instantiate(prefab, transform);
+			video_texture = (GameObject)Instantiate(prefab, transform);
 
 			//set the file path of each video to be used in play script
-			play_icon = newObj.transform.Find("PlayIcon").gameObject;
+			play_icon = video_texture.transform.Find("PlayIcon").gameObject;
 			text_path= play_icon.transform.Find("Text").gameObject;
 			text_path.GetComponent<Text>().text = files[i];
 
 			// set the name of each video
-			video_name= newObj.transform.Find("VideoName").gameObject;
+			video_name= video_texture.transform.Find("VideoName").gameObject;
 			video_name.GetComponent<Text>().text = files[i].Substring(files[i].IndexOf("Video")+6);  
 
 			//Disable Play on Awake for both Video 
@@ -67,7 +68,7 @@ static string[] files = System.IO.Directory.GetFiles( path );
 				yield return null;
 			}
 			//Assign the Texture from Video to RawImage to be displayed
-				newObj.GetComponent<RawImage>().texture  =renderTexture;
+				video_texture.GetComponent<RawImage>().texture  =renderTexture;
 				videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.RenderTexture;
        
              videoPlayer.targetTexture = renderTexture;

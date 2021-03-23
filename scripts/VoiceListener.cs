@@ -15,9 +15,6 @@ public class VoiceListener : MonoBehaviour{
     public Sprite disableListen;
     public Button button;
 
-    //public GameObject translation_bt;
-    public GameObject text_running;
-
     Thread mThread;
     public string connectionIP = "127.0.0.1";
     public int connectionPort = 25001;
@@ -27,29 +24,36 @@ public class VoiceListener : MonoBehaviour{
     
 
     // varible to control the activation 
-    string running = "false";
+    string isListening = "false";
     private GameObject translate_error;
     private GameObject translate_button;
     private GameObject translate_button_text;
 
+    //public GameObject translation_bt;
+    private GameObject text_isListening;
 
 
     //function activated by the user to start or stop the translation
-    public void startStopListening()
-    {   
+    public void startStopListening(){ 
+
+        // bring the values from unity to deal with exeptions
+        text_isListening = GameObject.Find("isListening_text");
         translate_button = GameObject.Find("TranslateButton");
         translate_button_text = translate_button.transform.Find("TranslateText").gameObject;
+        translate_error = GameObject.Find("error_massage");
+
 
         //check if the translation is activated to stop it.
-        if(running.Equals("true")) {
-        running = "false";
+        if(isListening.Equals("true")) {
+        isListening = "false";
 
-        //send the running value to unity
-		text_running.GetComponent<Text>().text ="false";
-
-        translate_error = GameObject.Find("translate_error massage");
+        //send the isListening value to unity
+		text_isListening.GetComponent<Text>().text ="false";
+        // delete error massage
+        
         translate_error.GetComponent<Text>().text =""; 
 
+        // change the value of translate_button as بدء الترجمة
         translate_button_text.GetComponent<Text>().text ="ﺔﻤﺟﺮﺘﻟﺍ ﺀﺪﺑ";
 
         listener.Stop();
@@ -57,19 +61,23 @@ public class VoiceListener : MonoBehaviour{
         button.image.sprite = disableListen;
        // VideoCaptureCtrl.Instance.StopCapture();
         } 
+
+
         // if the translation is not activated, start it
         else {
-        //VideoCaptureCtrl.Instance.StartCapture();
-
-        
-        translate_button_text.GetComponent<Text>().text ="ﺔﻤﺟﺮﺘﻟﺍ ﻑﺎﻘﻳﺇ";
-
-        button.image.sprite = enableListen;
+       //socket setting
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
-         //send the running value to unity
-		text_running.GetComponent<Text>().text ="true";
+
+        //send the isListening value to unity 
+        text_isListening.GetComponent<Text>().text ="true";
+
+        //change the text of the translate button.
+        translate_button_text.GetComponent<Text>().text ="ﺔﻤﺟﺮﺘﻟﺍ ﻑﺎﻘﻳﺇ";
+		//change the icon of listening
+        button.image.sprite = enableListen;
+        
         } 
     }
 
@@ -79,11 +87,11 @@ public class VoiceListener : MonoBehaviour{
         listener.Start();
         Debug.Log("Start listener");
         client = listener.AcceptTcpClient();
-        running = "true";
+        isListening = "true";
 
        
 
-        while (running.Equals("true")){
+        while (isListening.Equals("true")){
             SendAndReceiveData();
         }
     }
