@@ -5,17 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEditor;
 
-<<<<<<< HEAD
 
-=======
-// HI
->>>>>>> 247b421c982b46ff6b2c5de75b3dfd133404025c
 //using UnityEngine.Networking;
-
 public class PlayVideo : MonoBehaviour
 {
-
-
     public GameObject playIcon;
 
     // path of recoded video
@@ -30,7 +23,5 @@ public class PlayVideo : MonoBehaviour
         System.Diagnostics.Process.Start(path);
 
     }
-
-
 }
 

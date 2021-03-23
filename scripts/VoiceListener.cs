@@ -14,6 +14,10 @@ public class VoiceListener : MonoBehaviour{
     public Sprite enableListen;
     public Sprite disableListen;
     public Button button;
+
+    //public GameObject translation_bt;
+    public GameObject text_running;
+
     Thread mThread;
     public string connectionIP = "127.0.0.1";
     public int connectionPort = 25001;
@@ -25,12 +29,17 @@ public class VoiceListener : MonoBehaviour{
     // varible to control the activation 
     string running = "false";
 
+
     //function activated by the user to start or stop the translation
     public void startStopListening()
-    {
+    {   
         //check if the translation is activated to stop it.
         if(running.Equals("true")) {
         running = "false";
+
+        //send the running value to unity
+		text_running.GetComponent<Text>().text ="false";
+
         listener.Stop();
         Debug.Log("Stop listener");
         button.image.sprite = disableListen;
@@ -43,6 +52,8 @@ public class VoiceListener : MonoBehaviour{
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
+         //send the running value to unity
+		text_running.GetComponent<Text>().text ="true";
         } 
     }
 
@@ -53,6 +64,9 @@ public class VoiceListener : MonoBehaviour{
         Debug.Log("Start listener");
         client = listener.AcceptTcpClient();
         running = "true";
+
+       
+
         while (running.Equals("true")){
             SendAndReceiveData();
         }
