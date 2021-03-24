@@ -30,7 +30,7 @@ def filteringText(text,sock):
         
         # loop to search the compound words in text and store the start and end indexes
         for m in re.finditer(line.strip() , text):
-            print("jhhugghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+            #print("jhhugghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
             if line.strip()=='': # break if arrive to end of lines
                 break
             compWord_indexes.append(m.span()) # store the start-end indexes of compWord
@@ -88,6 +88,6 @@ def filteringText(text,sock):
         text_with_marks.append((temp_words, 0)) 
         text_list.append(temp_words)
         
-    print(text_with_marks)
+    #print(text_with_marks)
     extractMorphFeatures(text_list,text_with_marks,sock)
         
