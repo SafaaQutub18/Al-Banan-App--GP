@@ -4,7 +4,7 @@ import azure.cognitiveservices.speech as speechsdk
 import socket
 import time
 
-# connect pythone with c#
+# connect pythone with c# codes
 host, port = "127.0.0.1", 25001
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((host, port))
