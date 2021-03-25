@@ -8,6 +8,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using System.Threading.Tasks;
 using System;
 
 
@@ -32,6 +33,7 @@ namespace RockVR.Video.Demo
 
         //public GameObject translation_bt;
         private GameObject text_isRecord;
+        private GameObject saved_massege;
         
         private void Awake()
         {
@@ -43,6 +45,7 @@ namespace RockVR.Video.Demo
             record_button = GameObject.Find("RecordButton");
             record_button_text = record_button.transform.Find("RecordText").gameObject;
             record_error = GameObject.Find("error_massage");
+            saved_massege = GameObject.Find("saved_massege");
         }
 
         public void startScreenRecord()
@@ -57,7 +60,8 @@ namespace RockVR.Video.Demo
 
                 isRecord = true;
                 VideoCaptureCtrl.instance.StartCapture();
-                button.image.sprite = enableRecord;     
+                button.image.sprite = enableRecord;   
+                saved_massege.GetComponent<Text>().text ="";  
             }        
             else{
                 stopRecordAndSave();
@@ -77,6 +81,14 @@ namespace RockVR.Video.Demo
 
             // change the value of translate_button as تسجيل الترجمة
             record_button_text.GetComponent<Text>().text ="ﺔﻤﺟﺮﺘﻟﺍ ﻞﻴﺠﺴﺗ";
+
+           
+            saved_massege.GetComponent<Text>().text =" ﺡﺎﺠﻨﺑ ﻮﻳﺪﻴﻔﻟﺍ ﻆﻔﺣ ﻢﺗ";
+
+        
+     
+            
+
 
 
             

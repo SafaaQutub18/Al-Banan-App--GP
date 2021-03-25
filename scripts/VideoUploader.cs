@@ -23,12 +23,21 @@ public class VideoUploader : MonoBehaviour
 
     private bool isPaused = false;
     private bool firstRun = true;
+    private GameObject error_massege;
 
+    void Start (){ 
+        path = "";
+        error_massege = GameObject.Find("massege");}
+  
     // Function of upload video button
     public void UploadVideo ()
     {
+       //delete the error_massege to unity
+      error_massege.GetComponent<Text>().text ="";
+
        // Assign the video path selected by the user to the path variable
        path = EditorUtility.OpenFilePanel("Show all images (.mp4)", "","mp4");  
+ 
        Debug.Log("Done Uploading Video");
     }
 
@@ -76,7 +85,11 @@ public class VideoUploader : MonoBehaviour
     }
 
     public void PlayPause() {
-        if(!firstRun && !isPaused) {
+        if (path == ""){
+        //send the error_massege to unity
+		error_massege.GetComponent<Text>().text =" ﻻﻭﺃ ﻮﻳﺪﻴﻓ ﺭﺎﻴﺘﺧﺎﺑ ﻢﻗ ﻼﻀﻓ";
+        }
+        else {if(!firstRun && !isPaused) {
             videoPlayer.Pause();
             playIcon.SetActive(true);
             isPaused = true;
@@ -85,11 +98,13 @@ public class VideoUploader : MonoBehaviour
             playIcon.SetActive(false);
             isPaused = false;
         } else {
+
             StartCoroutine(playVideo());
         }
     }
 
 
 
+}
 }
 
