@@ -67,7 +67,7 @@ namespace RockVR.Video.Demo
                 stopRecordAndSave();
             }
         }
-         public void stopRecordAndSave()
+         public async Task stopRecordAndSave()
         {
             isRecord = false;
             VideoCaptureCtrl.instance.StopCapture(); 
@@ -84,6 +84,8 @@ namespace RockVR.Video.Demo
 
            
             saved_massege.GetComponent<Text>().text =" ﺡﺎﺠﻨﺑ ﻮﻳﺪﻴﻔﻟﺍ ﻆﻔﺣ ﻢﺗ";
+            await Task.Delay(3000);
+            saved_massege.GetComponent<Text>().text =" ";
 
         
      
