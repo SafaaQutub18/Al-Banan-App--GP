@@ -27,7 +27,7 @@ public class Avatar : MonoBehaviour{
       animator = GetComponent<Animator>();
 
       // invoke representSign function every 1.5 sec
-      InvokeRepeating("representSign", 0.0f, 1.0f);
+      InvokeRepeating("representSign", 0.0f, 2f);
     }    
  
     void representSign () {   

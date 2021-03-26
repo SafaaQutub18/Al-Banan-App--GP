@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e409353c15604d85a83f7805ced9756
+guid: a934f1dae7536fe4d87b33f3a9cb831a
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -39,7 +39,7 @@ ModelImporter:
       takeName: RIG-Vincent|IDDDEELL
       internalID: 0
       firstFrame: 0
-      lastFrame: 997
+      lastFrame: 301
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -47,7 +47,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

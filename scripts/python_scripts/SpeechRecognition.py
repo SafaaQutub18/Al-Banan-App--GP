@@ -18,7 +18,7 @@ def convertSpeechToText():
         speech_recognizer.recognized.connect(lambda evt:filteringText(evt.result.text ,sock))                    
         speech_recognizer.start_continuous_recognition()
         
-        time.sleep(100)
+        time.sleep(30)
         speech_recognizer.stop_continuous_recognition()
 
 convertSpeechToText()
