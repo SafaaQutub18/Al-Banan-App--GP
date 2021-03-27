@@ -6189,9 +6189,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.2260189
   m_TransitionOffset: 0
-  m_ExitTime: 0.95714283
+  m_ExitTime: 0.5277575
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -9929,7 +9929,7 @@ AnimatorController:
   - m_Name: Id
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 2
+    m_DefaultInt: -1
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Trigger
