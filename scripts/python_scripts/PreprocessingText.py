@@ -6,7 +6,8 @@ import unicodedata as ud
 # filteringText function  put a mark of compound word that have one sign in ArSL and collect them in one index to prevent any change on them
 # parameter text that received from speech 
 
-def filteringText(text,sock):
+
+def filteringText(text):
     
     # read the compound word file 
     compound_words_file = open('compound word.txt', 'r', encoding="utf8",) 
@@ -34,8 +35,7 @@ def filteringText(text,sock):
             if line.strip()=='': # break if arrive to end of lines
                 break
             compWord_indexes.append(m.span()) # store the start-end indexes of compWord
-    print("ci",compWord_indexes)
-            
+   
 # ******************************************************************************************
     
     # A temporary variable inside the loop to collect the character of the word
@@ -89,5 +89,7 @@ def filteringText(text,sock):
         text_list.append(temp_words)
         
     #print(text_with_marks)
-    extractMorphFeatures(text_list,text_with_marks,sock)
+    extractMorphFeatures(text_list,text_with_marks)
+
+filteringText("كان بطلا يقاتل ببسالة كالنمر في يوم أحد ويدافع عن رسول الله بجسده وروحه والدماء تتصبب من كل مكان في جسده فنظر له رسول الله صلى الله عليه وسلم وقال له لو قلت باسم الله لرفعتك الملائكة والناس ينظرون")
         

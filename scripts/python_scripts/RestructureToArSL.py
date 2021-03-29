@@ -5,7 +5,7 @@ import re
 # function to restructure the text into ArSL structure based on some rules  
 # parameter: the text_with_marks: which contains the list of words with there marks after filtering.
 #            the morphological_result: which contains the analyzed feature that extracted from the words. 
-def restructureText(text_with_marks, moropholgical_result ,sock):
+def restructureText(text_with_marks, moropholgical_result ):
      
     print("--------------------------------------------------------")
     
@@ -139,5 +139,5 @@ def restructureText(text_with_marks, moropholgical_result ,sock):
     print(restructured_text)
     
     # call "checkText" function to search the words in dictionary
-    checkText(restructured_text ,sock)
+   # checkText(restructured_text ,sock)
 
