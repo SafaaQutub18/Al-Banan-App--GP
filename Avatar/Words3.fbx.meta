@@ -68,11 +68,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: "RIG-Vincent|\uFEAE\uFEF4\uFE9C\uFEDB (1)"
-      takeName: "RIG-Vincent|\uFEAE\uFEF4\uFE9C\uFEDB"
+      name: "RIG-Vincent|\uFEE5\uFE8E\uFEDB"
+      takeName: "RIG-Vincent|\uFEE5\uFE8E\uFEDB"
       internalID: 0
       firstFrame: 0
-      lastFrame: 106
+      lastFrame: 199
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
