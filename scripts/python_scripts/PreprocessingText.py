@@ -34,7 +34,7 @@ def filteringText(text,sock):
             if line.strip()=='': # break if arrive to end of lines
                 break
             compWord_indexes.append(m.span()) # store the start-end indexes of compWord
-    print("ci",compWord_indexes)
+    
             
 # ******************************************************************************************
     

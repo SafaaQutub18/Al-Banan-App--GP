@@ -2208,16 +2208,16 @@ AnimatorStateMachine:
     m_Position: {x: 620, y: -150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2404899107259864640}
-    m_Position: {x: 480, y: 110, z: 0}
+    m_Position: {x: 530, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2047117017054817969}
-    m_Position: {x: 480, y: 190, z: 0}
+    m_Position: {x: 530, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2560238858033474706}
-    m_Position: {x: 480, y: 260, z: 0}
+    m_Position: {x: 530, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6069044581176168035}
-    m_Position: {x: 480, y: 330, z: 0}
+    m_Position: {x: 530, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7968359654936659685}
     m_Position: {x: 1300, y: 320, z: 0}
@@ -2337,7 +2337,7 @@ AnimatorStateMachine:
     m_Position: {x: -370, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6971040610686514541}
-    m_Position: {x: 480, y: 430, z: 0}
+    m_Position: {x: 530, y: 500, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4965102243018314665}
     m_Position: {x: -760, y: -540, z: 0}
@@ -2493,58 +2493,58 @@ AnimatorStateMachine:
     m_Position: {x: -360, y: 1010, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2291379676034013318}
-    m_Position: {x: 140, y: 640, z: 0}
+    m_Position: {x: 90, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8199642187708241458}
-    m_Position: {x: 150, y: 730, z: 0}
+    m_Position: {x: 100, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4142289207951407377}
-    m_Position: {x: 360, y: 610, z: 0}
+    m_Position: {x: 310, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2392727287034705592}
-    m_Position: {x: 360, y: 790, z: 0}
+    m_Position: {x: 310, y: 570, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5886576165041688494}
-    m_Position: {x: 360, y: 540, z: 0}
+    m_Position: {x: 310, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4123225250945940770}
-    m_Position: {x: 360, y: 670, z: 0}
+    m_Position: {x: 310, y: 450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -753151157978609854}
-    m_Position: {x: 140, y: 490, z: 0}
+    m_Position: {x: 90, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4151335791307312299}
-    m_Position: {x: 140, y: 560, z: 0}
+    m_Position: {x: 90, y: 340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2998186103092220285}
-    m_Position: {x: 359.33337, y: 483.8806, z: 0}
+    m_Position: {x: 310, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2554085873018212627}
-    m_Position: {x: 360, y: 730, z: 0}
+    m_Position: {x: 310, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2778885584265289204}
-    m_Position: {x: -80, y: 1020, z: 0}
+    m_Position: {x: 100, y: 880, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6747447318851630643}
-    m_Position: {x: -80, y: 1090, z: 0}
+    m_Position: {x: 100, y: 950, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4223650895525201448}
-    m_Position: {x: 150, y: 800, z: 0}
+    m_Position: {x: 100, y: 580, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2279911972111328209}
-    m_Position: {x: 150, y: 890, z: 0}
+    m_Position: {x: 100, y: 670, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5690672574305753156}
-    m_Position: {x: 150, y: 960, z: 0}
+    m_Position: {x: 100, y: 740, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -937536108694249713}
     m_Position: {x: -650, y: 880, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2053626389239029789}
-    m_Position: {x: 150, y: 1030, z: 0}
+    m_Position: {x: 100, y: 810, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3503504665171154173}
-    m_Position: {x: 360, y: 850, z: 0}
+    m_Position: {x: 310, y: 630, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1743061910224395140}
     m_Position: {x: 1300, y: -200, z: 0}
@@ -10625,7 +10625,7 @@ AnimatorController:
   - m_Name: Id
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 115
+    m_DefaultInt: -1
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Trigger
